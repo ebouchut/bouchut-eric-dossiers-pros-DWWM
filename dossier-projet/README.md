@@ -43,3 +43,10 @@ pandoc dossier-projet.md --pdf-engine=typst --metadata-file=metadata.yaml \
   --toc --number-sections --resource-path=.:images \
   -o ../bouchut-eric-dossier-projet.pdf
 ```
+
+## Clean the generated PDFs
+
+```bash
+cd dossier-projet
+make clean    # removes the generated PDFs
+```
