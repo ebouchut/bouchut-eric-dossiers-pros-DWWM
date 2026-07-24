@@ -1,45 +1,48 @@
-# DWWM oral-defense slideshow — source
+# DWWM oral-defense slideshow — Slidev sources
 
-Markdown source for the oral-defense slideshow (35-minute presentation) of the DWWM
-professional title (RNCP37674). The deliverables are generated at the repository root:
-`bouchut-eric-diaporama.pptx` (editable) and `bouchut-eric-diaporama.pdf` (jury handout).
+[Slidev](https://sli.dev) sources of the oral-defense slideshow for the *Développeur Web et
+Web Mobile* professional title (DWWM, RNCP37674). The jury-facing files are generated at the
+repository root: `bouchut-eric-diaporama.pdf` and `bouchut-eric-diaporama.pptx`.
 
-> The slides are written in French (certification requirement); this README, the Makefile
-> and the build files are in English. Speaker notes are embedded per slide (`::: notes`).
+> The slides themselves are written in French (certification requirement); only this README
+> and the build files are in English.
 
 ## Contents
 
 | File | Purpose |
 |---|---|
-| `diaporama.md` | Slide source (French), with speaker notes |
-| `reference.pptx` | Pandoc reference document styled with the **Catppuccin (Latte)** palette |
-| `images/` | Figures reused from the project dossier (MCD, MPD, mockups) |
-| `Makefile` | Slide generation |
+| `slides.md` | Slide deck source (French), one block per slide, presenter notes as HTML comments |
+| `style.css` | Catppuccin Latte palette over the Slidev `default` theme |
+| `public/images/` | Screenshots and diagrams referenced as `/images/...` |
+| `package.json` | Slidev CLI + `playwright-chromium` (required by the exporters) |
+| `Makefile` | Wrappers around the npm scripts |
 
-## Requirements (macOS)
+## Requirements
 
-```bash
-brew install pandoc          # tested with pandoc 3.10
-```
-
-- **LibreOffice** (for the PDF export) — the `soffice` binary is expected at
-  `/Applications/LibreOffice.app/Contents/MacOS/soffice`.
-
-## Regenerate
+- Node.js **>= 20** (any version pinned with `fnm` works).
+- One-time setup (downloads the export browser, ~150 MB):
 
 ```bash
-cd diaporama
-make          # builds the .pptx then the .pdf at the repository root
-make pptx     # builds only the editable .pptx
-make clean    # removes the generated files
+npm install
 ```
 
-The `.pptx` is fully editable: open it in Keynote, PowerPoint, or LibreOffice Impress to
-refine the design, then re-export to PDF (or run `make` again after editing `diaporama.md`).
+## Present (recommended for the defense)
 
-## Theme
+```bash
+make dev        # or: npm run dev
+```
 
-The `reference.pptx` embeds the **Catppuccin Latte** palette used by the learn-dev
-application (`theme-catppuccin.css`): soft base background `#eff1f5`, text `#4c4f69`, mauve
-accent `#8839ef`. To adjust the theme, edit the color scheme in
-`ppt/theme/theme1.xml` inside `reference.pptx` (it is a ZIP archive).
+Then open <http://localhost:3030>. **Presenter mode** (notes + timer + next slide) is at
+<http://localhost:3030/presenter/1> — press `o` for the slide overview, `d` for dark mode.
+
+## Export the jury-facing files
+
+```bash
+make pdf        # => ../bouchut-eric-diaporama.pdf
+make pptx       # => ../bouchut-eric-diaporama.pptx  (slides as images, NOT editable)
+make html       # => dist/  (standalone SPA, gitignored)
+make all        # all three
+```
+
+The PPTX export embeds each slide as an image: use the live `make dev` presentation (or the
+PDF) rather than PowerPoint to actually present.
