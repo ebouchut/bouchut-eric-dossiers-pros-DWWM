@@ -1,0 +1,89 @@
+/*
+ * Catppuccin Latte palette applied over the Slidev default theme.
+ * https://catppuccin.com/palette — Latte (light) flavor.
+ */
+
+:root {
+  --latte-base: #eff1f5;     /* page background */
+  --latte-mantle: #e6e9ef;   /* code block background */
+  --latte-crust: #dce0e8;    /* borders */
+  --latte-surface0: #ccd0da; /* table stripes */
+  --latte-text: #4c4f69;     /* body text */
+  --latte-subtext: #6c6f85;  /* secondary text */
+  --latte-mauve: #8839ef;    /* headings */
+  --latte-blue: #1e66f5;     /* links, accents */
+  --latte-lavender: #7287fd; /* subtle accents */
+}
+
+.slidev-layout {
+  background: var(--latte-base);
+  color: var(--latte-text);
+}
+
+.slidev-layout h1,
+.slidev-layout h2,
+.slidev-layout h3 {
+  color: var(--latte-mauve);
+}
+
+.slidev-layout h1 small,
+.slidev-layout h2 small {
+  color: var(--latte-subtext);
+  font-size: 0.55em;
+  font-weight: 400;
+}
+
+.slidev-layout a {
+  color: var(--latte-blue);
+}
+
+.slidev-layout strong {
+  color: var(--latte-text);
+}
+
+.slidev-layout blockquote {
+  background: var(--latte-mantle);
+  border-left: 4px solid var(--latte-mauve);
+  color: var(--latte-text);
+}
+
+/* Cover and section divider slides: mauve wash, centered title */
+.slidev-layout.cover,
+.slidev-layout.section {
+  background: linear-gradient(135deg, var(--latte-base) 0%, var(--latte-mantle) 100%);
+}
+
+.slidev-layout.cover h1,
+.slidev-layout.section h1 {
+  color: var(--latte-mauve);
+  font-weight: 700;
+}
+
+/* Code blocks on the mantle shade, subtle border */
+.slidev-layout pre,
+.slidev-layout .slidev-code {
+  background: var(--latte-mantle) !important;
+  border: 1px solid var(--latte-crust);
+  border-radius: 8px;
+}
+
+.slidev-layout code:not(pre code) {
+  background: var(--latte-mantle);
+  color: var(--latte-mauve);
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+}
+
+/* Tables: crisp header, striped rows */
+.slidev-layout table {
+  font-size: 0.9em;
+}
+
+.slidev-layout th {
+  background: var(--latte-mantle);
+  color: var(--latte-mauve);
+}
+
+.slidev-layout tr:nth-child(even) td {
+  background: color-mix(in srgb, var(--latte-surface0) 35%, transparent);
+}

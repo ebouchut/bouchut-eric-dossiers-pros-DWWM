@@ -1,0 +1,6 @@
+# Node.js dependencies (diaporama/ Slidev project)
+node_modules/
+
+# Slidev build output and cache
+diaporama/dist/
+.slidev/
