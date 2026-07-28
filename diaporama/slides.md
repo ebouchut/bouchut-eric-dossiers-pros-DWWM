@@ -1,11 +1,13 @@
 ---
 theme: default
-title: learn-dev — Soutenance DWWM
+title: learn-dev — Présentation
 info: |
   Diaporama de soutenance — Titre professionnel Développeur Web et Web Mobile (DWWM),
   RNCP37674 — Eric Bouchut — session août 2026.
+author: Eric Bouchut
 lang: fr
 aspectRatio: 16/9
+transition: slide-left
 download: false
 mdc: true
 layout: cover
@@ -13,14 +15,17 @@ layout: cover
 
 # learn-dev
 
-## Plateforme web d'apprentissage de la programmation
+## Plateforme Web d'apprentissage de la programmation
 
 **Eric Bouchut** — Titre professionnel Développeur Web et Web Mobile (DWWM)
 
-Soutenance — RNCP37674 — session août 2026
+Soutenance — RNCP 37674 — session août 2026
 
 <!--
-(~0,5 min) Slide de titre. Saluer le jury, se présenter brièvement.
+(~0,5 min) Slide de titre. 
+
+Saluer le jury. 
+Se présenter brièvement.
 -->
 
 ---
@@ -33,17 +38,19 @@ layout: section
 
 # Le besoin
 
-- Apprendre à programmer suppose un **parcours structuré** : du contenu organisé, une
+- **Contexte**: Apprendre à programmer suppose un **parcours structuré** : du contenu organisé, une
   progression lisible, un espace où un formateur publie et fait évoluer ses cours.
 - **Problème** : offrir un environnement multi-rôles simple, **sûr** et **accessible**.
-- **Solution, en une phrase** :
+- **Solution** :
 
-> *learn-dev est une plateforme web où des formateurs publient des cours composés de leçons
+> *`learn-dev` est une plateforme Web où des formateurs publient des cours composés de leçons
 > en Markdown, et où des étudiants s'inscrivent et les suivent.*
 
 <!--
-(~1 min) Me présenter. Poser le besoin : structurer l'apprentissage du code. Annoncer la
-solution en une phrase. Enchaîner sur ce qu'est concrètement l'application.
+(~1 min) Me présenter. 
+Poser le besoin : structurer l'apprentissage du code. 
+Annoncer la solution en une phrase. 
+Enchaîner sur ce qu'est concrètement l'application.
 -->
 
 ---
@@ -54,9 +61,12 @@ solution en une phrase. Enchaîner sur ce qu'est concrètement l'application.
 
 <div>
 
-- **Trois rôles** : étudiant (`STUDENT`), formateur (`INSTRUCTOR`), administrateur (`ADMIN`).
-- **Étudiant** : catalogue, inscription à un cours, lecture des leçons.
-- **Formateur** : création de cours/leçons, cycle de vie de publication, gestion des inscrits.
+- **Trois rôles** : 
+    - étudiant (`STUDENT`), 
+    - formateur (`INSTRUCTOR`), 
+    - administrateur (`ADMIN`).
+- **Étudiant** : catalogue, inscription à des cours, lecture des leçons.
+- **Formateur** : création de cours/leçons, cycle de vie de publication, gestion des inscriptions.
 - **Administrateur** : gestion des comptes, modération des contenus.
 
 </div>
@@ -66,7 +76,7 @@ solution en une phrase. Enchaîner sur ce qu'est concrètement l'application.
 </div>
 
 <!--
-(~1 min) Décrire les 3 rôles et le parcours nominal. Préciser : application web rendue côté
+(~1 min) Décrire les 3 rôles et le parcours nominal. Préciser : application Web rendue côté
 serveur (Spring Boot + Thymeleaf), responsive et accessible.
 -->
 
@@ -80,67 +90,125 @@ layout: section
 
 # Gestion de projet
 
-- **Git par fonctionnalité** : une branche par feature, convention *Conventional Commits*.
-- **Développement incrémental** : auth → domaine cours → authoring → administration.
-- **14 décisions d'architecture (ADR)** tracées (format MADR).
+- GitHub Project, **Issues** et **Pull-Requests**
+- **Git par fonctionnalité** : une [branche par feature](https://github.com/ebouchut/learn-dev/tree/dev?tab=contributing-ov-file#git-branching-strategy), convention *[Conventional Commits](https://github.com/ebouchut/learn-dev/tree/dev?tab=contributing-ov-file#git-commit-message-convention)*.
+- **Développement incrémental** : authentification, domaine cours, création de contenu, administration.
+- **14 décisions d'architecture** (ADR) tracées au format MADR.
 - Principe **YAGNI** : on ne construit que le nécessaire à la v1.
 
 <!--
-(~2 min) Insister sur la démarche d'ingénierie : branches par feature, ADR, plans versionnés.
+(~2 min)
+
+Insister sur la démarche d'ingénierie : 
+- branches par feature, 
+- ADR, 
+- Plans de dev versionnés.
+
 C'est de la communication écrite (compétence transversale).
 -->
 
 ---
 
-# Cahier des charges & personas
+# Cahier des charges et personas
 
 - **Objectifs** : s'inscrire et suivre des cours, publier/gérer des cours, administrer.
 - **Personas** :
-  - **Léa** (étudiante) — suivre des cours, sur mobile comme sur ordinateur.
-  - **Marc** (formateur) — rédiger en Markdown, gérer publication et inscrits.
-  - **Awa** (admin) — gérer les comptes et modérer en toute sécurité.
+  - **Léa** (étudiante)
+    - s'inscrit et suit des cours, sur mobile comme sur ordinateur.
+  - **Marc** (formateur)
+    - rédige les leçons de cours qu'il conçoit en Markdown, 
+    - gère la publication de ses cours,
+    - gère l'inscription des étudiants.
+  - **Awa** (admin):
+    - gère les comptes,
+    - modère en toute sécurité.
 - **Non fonctionnel** : sécurité, accessibilité RGAA, responsive, tests, CI.
 
 <!--
-(~2 min) Dérouler les besoins par persona. Relier aux besoins non fonctionnels.
+(~2 min) 
+Dérouler les besoins par persona. 
+Relier aux besoins non fonctionnels.
 -->
 
 ---
+layout: section
+---
 
-# Base de données — modèle conceptuel <small>(CP5)</small>
+# Base de données  <small>(CP5)</small>
 
-<img src="/images/learn-dev.png" class="h-100 mx-auto rounded" />
+---
+
+# Base de données — MCD
+
+Modèle Conceptuel de Données
+
+<div class="grid grid-cols-2 gap-3 items-center">
+
+<div>
+
+- Entités
+- Relations
+- Cardinalités
+
+</div>
+
+<img src="/images/mcd.png" class="h-100 mx-auto rounded" />
+
+</div>
+
 
 <!--
-(~1,5 min) Présenter la modélisation Merise (MCD ici). 9 entités : utilisateurs, rôles,
-cours, leçons, inscriptions, jetons, audit. Montrer les associations et cardinalités.
+(~1,5 min) 
+Présenter la modélisation Merise (MCD). 
+9 entités : utilisateurs, rôles, cours, leçons, inscriptions, jetons, audit. 
+Montrer les associations et cardinalités.
 -->
 
 ---
 
-# Base de données — schéma physique & choix <small>(CP5)</small>
+# Base de données — MLD <small>(CP5)</small>
+
+Modèle Logique de Données (MLD)
+
+<img src="/images/mld.svg" class="h-100 mx-auto rounded" />
+
+<!--
+(~1,5 min) 
+Présenter la modélisation Merise (MLD ici). 
+9 entités : utilisateurs, rôles, cours, leçons, inscriptions, jetons, audit. 
+Montrer les tables, tables de jonctions et clés étrangères.
+-->
+
+---
+
+# Base de données — MPD
+
+Modèle Physique de Données
 
 - **PostgreSQL 17**, **9 tables**, migrations **Liquibase** appliquées au démarrage.
 - **Clé UUID** pour les utilisateurs (anti-IDOR) ; **BIGINT** ailleurs ; clés composites.
 - **Contraintes** : `UNIQUE`, `CHECK`, `FK ON DELETE CASCADE` ; Hibernate en `validate`.
 
-<img src="/images/schema.png" class="h-70 mx-auto rounded" />
+<img src="/images/mpd.png" class="h-70 mx-auto rounded" />
 
 <!--
-(~1,5 min) Justifier PostgreSQL (ADR-0007), Liquibase (ADR-0005), UUID (ADR-0003).
+(~1,5 min) 
+Justifier PostgreSQL (ADR-0007), 
+Liquibase (ADR-0005), 
+UUID (ADR-0003).
 Souligner l'intégrité au plus près des données + contrôle anti-dérive de schéma en CI.
 -->
 
 ---
 
-# Maquettage & accessibilité <small>(CP2)</small>
+# Maquettage et accessibilité <small>(CP2)</small>
 
 <div class="grid grid-cols-[1fr_auto] gap-6 items-center">
 
 <div>
 
 - **Maquettes Figma** + prototypes HTML ; charte, deux thèmes (Catppuccin / Soft Paper).
-- **Responsive** : versions web (bureau) **et web mobile** (points de rupture en `rem`).
+- **Responsive** : versions Web (bureau) **et Web mobile** (points de rupture en `rem`).
 - **Accessibilité RGAA / WCAG AA** : structure sémantique, *skip link*, contrastes
   calculés (min. 4,73:1), police **Atkinson Hyperlegible**.
 
@@ -152,7 +220,7 @@ Souligner l'intégrité au plus près des données + contrôle anti-dérive de s
 
 <!--
 (~2 min) Montrer la version mobile. Insister sur l'accessibilité « par construction » et les
-contrastes mesurés. C'est CP2 (maquetter) : web ET web mobile.
+contrastes mesurés. C'est CP2 (maquetter) : Web ET Web mobile.
 -->
 
 ---
@@ -160,19 +228,39 @@ contrastes mesurés. C'est CP2 (maquetter) : web ET web mobile.
 # Environnement technique <small>(CP1)</small>
 
 - **Java 21** + **Spring Boot 3.5** (Web MVC, Security, Data JPA, Validation, Mail).
-- **Thymeleaf** (vues), **PostgreSQL 17** + **Liquibase**, **commonmark-java** + **jsoup**.
+- **Thymeleaf** (vues), 
+- **commonmark-java** 
+- **jsoup**
+- **PostgreSQL 17** + **Liquibase**.
 - **Podman / Docker Compose** (Postgres, Mongo, Mailpit) ; **Maven** ; **Git** ; **CI GitHub Actions**.
 - Architecture **en couches** :
 
+
 ```mermaid { scale: 0.8 }
 flowchart LR
-    B[Navigateur] -->|HTTP| C[Contrôleur] --> S[Service<br/>règles métier] --> R[Repository<br/>Spring Data JPA] --> P[(PostgreSQL 17)]
-    C -.->|nom de vue| V[Vue Thymeleaf] -.->|HTML| B
+    browser[Navigateur]
+    controller[Contrôleur]
+    service["Service<br/>règles métier"]
+    repository["Repository<br/>Spring Data JPA"]
+    db[(PostgreSQL)]
+    view[Vue Thymeleaf]
+    
+
+    browser     -->|HTTP| controller
+    controller  --> service
+    service     --> repository
+    repository  --> db
+    controller  -.->|nom de vue| view
+    view        -.->|HTML| browser
 ```
 
+
 <!--
-(~2 min) Balayer la stack et justifier le rendu côté serveur (simplicité, sécurité, SEO).
-Montrer l'outillage (conteneurs, CI). C'est CP1.
+(~2 min) 
+Balayer la stack
+justifier le rendu côté serveur (simplicité, sécurité, SEO).
+Montrer l'outillage (conteneurs, CI). 
+C'est CP1.
 -->
 
 ---
@@ -249,7 +337,7 @@ des tests automatisés.
 
 ---
 
-# Feature 2 — Cours & leçons <small>(CP7)</small>
+# Feature 2 — Cours et leçons <small>(CP7)</small>
 
 - **Autorisations** : le cours d'un autre formateur → **403** ; contenu invisible → **404** ;
   transition invalide → **409**.
@@ -273,7 +361,7 @@ gestion fine des erreurs HTTP. CP7.
 
 ---
 
-# Front-end : interfaces & responsive <small>(CP3, CP4)</small>
+# Front-end : interfaces et responsive <small>(CP3, CP4)</small>
 
 <div class="grid grid-cols-2 gap-6 items-center">
 
@@ -353,8 +441,13 @@ sequenceDiagram
 </div>
 
 <!--
-(~2 min) Balayer les défenses, puis dérouler la séquence de connexion : CSRF, BCrypt,
-session HttpOnly. Relier à OWASP. C'est un point fort : sécurité par conception.
+(~2 min) Balayer les défenses, 
+dérouler la séquence de connexion : 
+- CSRF, 
+- BCrypt,
+- session HttpOnly. 
+
+Relier à OWASP. C'est un point fort : sécurité dès la conception.
 -->
 
 ---
@@ -363,11 +456,17 @@ session HttpOnly. Relier à OWASP. C'est un point fort : sécurité par concepti
 
 - **64 tests** (pyramide) : unitaires (Mockito), tranche JPA, intégration (MockMvc).
 - **PostgreSQL réel** en test via **Testcontainers** (schéma fidèle : UUID, contraintes).
-- **Couverture** mesurée par **JaCoCo**, publiée sur **Codecov** ; CI à 4 workflows.
+- **Couverture** du code par les tests :
+    -  mesurée par **JaCoCo**, 
+    - publiée sur **[Codecov](https://app.codecov.io/gh/ebouchut/learn-dev)**.
+
 
 <!--
-(~1,5 min) Montrer la stratégie de tests et la matrice de sécurité. La CI verrouille la
-qualité à chaque push.
+(~1,5 min) 
+Montrer:
+- la stratégie de tests 
+- la matrice de sécurité. 
+La CI verrouille la qualité à chaque push.
 -->
 
 ---
@@ -378,22 +477,34 @@ layout: section
 
 ---
 
-# Conteneurisation & CI/CD <small>(CP8)</small>
+# Conteneurisation et CI <small>(CP8)</small>
 
 - **Image Docker multi-étapes** : build Maven puis exécution **non-root**.
-- **Docker Compose** (Postgres / Mongo / Mailpit) ; profils **dev / prod** ; secrets via `.env`.
-- **Procédure documentée** :
+- **Docker Compose** (Postgres / Mongo / Mailpit)
+- **Profils** `dev`/ `prod`
+- **Secrets** via `.env`.
+- **Procédure documentée**
+  ```bash
+  docker compose up -d        # 1. services (base de données, SMTP local)
+  ./mvnw spring-boot:run      # 2. application => http://localhost:8080
+  ```
+- **CI GitHub Actions** (4 workflows): 
+    - build, 
+    - tests, 
+    - lint, 
+    - contrôle anti-dérive du schéma.
 
-```bash
-docker compose up -d        # 1. services (base de données, SMTP local)
-./mvnw spring-boot:run      # 2. application => http://localhost:8080
-```
-
-- **CI GitHub Actions** : build, tests, lint, contrôle anti-dérive de schéma.
 
 <!--
-(~4 min) Rappeler : le déploiement en prod n'est pas exigé, c'est la QUALITÉ de la procédure
-documentée qui compte. Montrer le Dockerfile et un workflow CI. CP8.
+(~4 min) 
+Rappeler : le déploiement en prod n'est pas exigé, 
+c'est la QUALITÉ de la procédure documentée qui compte. 
+
+Montrer : 
+- le Dockerfile
+- un workflow CI. 
+
+CP8.
 -->
 
 ---
@@ -418,21 +529,28 @@ layout: section
 | CP8 | Déploiement | Docker, Compose, CI/CD |
 
 <!--
-(~1,5 min) Récapituler : les 8 compétences sont couvertes. Rappeler que le jury évalue des
-compétences, pas des fonctionnalités.
+(~1,5 min) 
+Récapituler : les 8 compétences sont couvertes.
+Rappeler que le jury évalue des compétences, pas des fonctionnalités.
 -->
 
 ---
 
-# Difficultés & évolutions
+# Difficultés et évolutions
 
-- **Difficultés** : concurrence à l'inscription (contrainte d'unicité captée) ; sécurité du
-  rendu Markdown (XSS → assainissement) ; un seul `h1` par page (accessibilité).
-- **Évolutions** : brancher **MongoDB** (NoSQL) ; suivi de progression leçon par leçon ;
-  API REST.
+- **Difficultés** : 
+    - concurrence à l'inscription (contrainte d'unicité captée),
+    - sécurité du rendu Markdown (XSS → assainissement),
+    - un seul `h1` par page (accessibilité).
+- **Évolutions** : 
+    - brancher **MongoDB** (NoSQL),
+    - suivre la progression leçon par leçon,
+    - API REST pour utiliser de React.
 
 <!--
-(~1 min) Être honnête sur les difficultés et leurs solutions. Ouvrir sur les évolutions,
+(~1 min)
+
+Ouvrir sur les évolutions,
 notamment le volet NoSQL.
 -->
 
@@ -445,10 +563,13 @@ class: text-center
 
 **Merci de votre attention.**
 
-Projet : **github.com/ebouchut/learn-dev**
+Projet : **[github.com/ebouchut/learn-dev](https://github.com/ebouchut/learn-dev)**
 
 Des questions ?
 
 <!--
-(~0,5 min) Remercier le jury et l'équipe pédagogique. Inviter aux questions.
+(~0,5 min)
+
+Remercier le jury et l'équipe pédagogique. 
+Inviter aux questions.
 -->
