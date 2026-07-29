@@ -9,7 +9,7 @@ un titre professionnel de niveau 5 (Bac+2).
 
 ## Documents
 
-1. **[Diaporama](bouchut-eric-diaporama.pdf)** :  
+1. **Diaporama** ([PDF](bouchut-eric-diaporama.pdf) | [en-ligne](https://www.ericbouchut.com/bouchut-eric-dossiers-pros-DWWM/)) :  
    donne la trame visuelle pour la **présentation** du projet au jury.
 2. **[Dossier Projet](bouchut-eric-dossier-projet.pdf)** :  
    décrit le projet et servira de base pour l'échange lors de l'**entretien technique**.
@@ -23,12 +23,17 @@ Si vous ne voulez que la substantifique moelle, alors lizez le **[résumé](bouc
 
 ## Projet
 
+https://github.com/ebouchut/learn-dev
+
 Les documents et la soutenance s'appuient sur mon projet de fin d'études: 
 **[Learn-Dev](https://github.com/ebouchut/learn-dev)**.
 
-Le [README](https://github.com/ebouchut/learn-dev?tab=readme-ov-file) vous expliquera comment installer, configurer, et lancer le projet.
+Le [README](https://github.com/ebouchut/learn-dev?tab=readme-ov-file) vous expliquera comment l'installer, le configurer, et le lancer.
 
-[CONTRIBUTING](https://github.com/ebouchut/learn-dev?tab=contributing-ov-file) explique comment contribuer au projet, les choix techniques et d'architecture, ainsi que les conventions de code.
+[CONTRIBUTING](https://github.com/ebouchut/learn-dev?tab=contributing-ov-file) explique comment contribuer au projet, quels sont les choix techniques et d'architecture.  
+Il détaille les conventions de codage, de nommage des messages de commit, des tests, de le base de données, ainsi que le workflow des branches Git.  
+Il contient les diagrammes avec le schéma de la base sous trois formes Merise (MCD, MLD, MPD) ainsi que ERD. 
+Il aborde aussi comment lancer les tests et générer la documentation.
 
 
 ## Contact
