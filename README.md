@@ -20,6 +20,28 @@ un titre professionnel de niveau 5 (Bac+2).
 
 Si vous ne voulez que la substantifique moelle, alors lizez le **[résumé](bouchut-eric-resume.pdf)** du projet.
 
+## Déroulement de la certification
+
+```mermaid
+timeline
+    title Certification DWWM (2 h)
+
+    section Épreuve collective
+        Questionnaire professionnel<br>(30 min)
+                : 4 questions en Anglais sur un texte (2 fermées (QCM), 2 ouvertes)
+
+    section Épreuve individuelle
+        Présentation du projet<br>(35 min)
+                : Le jury lit le dossier projet (optionnel)
+                : Présentation par le candidat<br>(sans interruption)
+        Entretien technique<br>(40 min)
+                : Questions sur le dossier et la présentation
+                : Vérification de la maîtrise des compétences<br>avec questions complémentaires ou Dossier Professionnel si besoin
+        Entretien final<br>(15 min)
+                : Échange sur le 
+                : Perspectives professionnelles
+```
+
 
 ## Projet
 
