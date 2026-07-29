@@ -46,3 +46,19 @@ make all        # all three
 
 The PPTX export embeds each slide as an image: use the live `make dev` presentation (or the
 PDF) rather than PowerPoint to actually present.
+
+## Publish to GitHub Pages
+
+The slideshow is published online by the [`pages.yml`](../.github/workflows/pages.yml)
+GitHub Actions workflow: it builds the SPA with the project-page base path
+(`--base /bouchut-eric-dossiers-pros-DWWM/`) and deploys it to GitHub Pages.
+
+- **URL:** <https://www.ericbouchut.com/bouchut-eric-dossiers-pros-DWWM/>
+  (alias: <https://ebouchut.github.io/bouchut-eric-dossiers-pros-DWWM/>)
+- **Trigger:** every push to `main` touching `diaporama/**`, or manually from the
+  *Actions* tab (*workflow_dispatch*).
+- **One-time setup:** repository *Settings > Pages > Build and deployment >
+  Source: GitHub Actions*.
+
+> Note: the published SPA embeds the presenter notes (anyone with the URL can read them
+> through the `/presenter` and `/overview` views).
