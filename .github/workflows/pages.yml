@@ -1,0 +1,63 @@
+# Publish the oral-defense slideshow (diaporama/) to GitHub Pages.
+#
+# Builds the Slidev SPA with the project-page base path and deploys it with the
+# official Pages actions (no gh-pages branch involved).
+# Published at: https://www.ericbouchut.com/bouchut-eric-dossiers-pros-DWWM/
+#
+# One-time repository setup: Settings > Pages > Build and deployment >
+# Source: GitHub Actions.
+
+name: Deploy slideshow to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "diaporama/**"
+      - ".github/workflows/pages.yml"
+  # Allow manual runs from the Actions tab.
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write      # deploy to Pages
+  id-token: write   # OIDC token used by actions/deploy-pages
+
+# One deployment at a time; a newer run supersedes an in-flight one.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: diaporama
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: diaporama/package-lock.json
+      - name: Install dependencies
+        run: npm ci
+      # `slidev build` does not need the export browser (only `slidev export` does).
+      # The base path is required for a project page, otherwise every asset 404s.
+      - name: Build the SPA
+        run: npm run build -- --base /bouchut-eric-dossiers-pros-DWWM/
+      - uses: actions/configure-pages@v6
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: diaporama/dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5
