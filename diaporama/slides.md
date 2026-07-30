@@ -22,10 +22,11 @@ layout: cover
 Soutenance — RNCP 37674 — session août 2026
 
 <!--
-(~0,5 min) Slide de titre. 
+(~0,5 min) 
 
-Saluer le jury. 
-Se présenter brièvement.
+
+- Saluer le jury.
+- Se présenter brièvement.
 -->
 
 ---
@@ -38,8 +39,10 @@ layout: section
 
 # Le besoin
 
-- **Contexte**: Apprendre à programmer suppose un **parcours structuré** : du contenu organisé, une
-  progression lisible, un espace où un formateur publie et fait évoluer ses cours.
+- **Contexte**: Apprendre à programmer suppose un **parcours structuré** : 
+    - du contenu organisé, 
+    - une progression lisible, 
+    - un espace où un formateur publie et fait évoluer ses cours.
 - **Problème** : offrir un environnement multi-rôles simple, **sûr** et **accessible**.
 - **Solution** :
 
@@ -47,15 +50,18 @@ layout: section
 > en Markdown, et où des étudiants s'inscrivent et les suivent.*
 
 <!--
-(~1 min) Me présenter. 
-Poser le besoin : structurer l'apprentissage du code. 
-Annoncer la solution en une phrase. 
-Enchaîner sur ce qu'est concrètement l'application.
+(~1 min) 
+
+Me présenter. 
+
+- Poser le besoin : structurer l'apprentissage du code. 
+- Annoncer la solution en une phrase. 
+- Enchaîner sur ce qu'est concrètement l'application.
 -->
 
 ---
 
-# learn-dev en bref
+# Vue d'ensemble de learn-dev 
 
 <div class="grid grid-cols-2 gap-6 items-center">
 
@@ -64,7 +70,8 @@ Enchaîner sur ce qu'est concrètement l'application.
 - **Trois rôles** : 
     - étudiant (`STUDENT`), 
     - formateur (`INSTRUCTOR`), 
-    - administrateur (`ADMIN`).
+    - administrateur (`ADMIN`).  
+
 - **Étudiant** : catalogue, inscription à des cours, lecture des leçons.
 - **Formateur** : création de cours/leçons, cycle de vie de publication, gestion des inscriptions.
 - **Administrateur** : gestion des comptes, modération des contenus.
@@ -76,7 +83,10 @@ Enchaîner sur ce qu'est concrètement l'application.
 </div>
 
 <!--
-(~1 min) Décrire les 3 rôles et le parcours nominal. Préciser : application Web rendue côté
+(~1 min)
+
+- Décrire les 3 rôles et le parcours nominal. 
+- Préciser : application Web rendue côté
 serveur (Spring Boot + Thymeleaf), responsive et accessible.
 -->
 
@@ -86,23 +96,48 @@ layout: section
 
 # Conception
 
+<!--
+Cette section aborde:
+
+- **l'organisation du travail** (aujourd'hui en solo, donc pas encore de SCRUM)
+- le cahier des charges
+- la modélisation des données et la base qui les stockent
+- le maquettage et l'expérience utilisateur (UX)
+- l'environnement de travail
+-->
+
 ---
 
 # Gestion de projet
 
-- GitHub Project, **Issues** et **Pull-Requests**
-- **Git par fonctionnalité** : une [branche par feature](https://github.com/ebouchut/learn-dev/tree/dev?tab=contributing-ov-file#git-branching-strategy), convention *[Conventional Commits](https://github.com/ebouchut/learn-dev/tree/dev?tab=contributing-ov-file#git-commit-message-convention)*.
-- **Développement incrémental** : authentification, domaine cours, création de contenu, administration.
-- **14 décisions d'architecture** (ADR) tracées au format MADR.
-- Principe **YAGNI** : on ne construit que le nécessaire à la v1.
+- GitHub **Project**, 
+- **Issues**,
+- **ADR**s (*Architecture Decision Records*),
+- **Plans** de développement,
+- Développement **incrémental** : (authentification, domaine cours, création de contenu, administration),
+- Git: **Branche par fonctionnalité**,
+- **Conventional Commits**,
+- **Pull-Requests**,
+- **YAGNI**.
 
 <!--
 (~2 min)
 
-Insister sur la démarche d'ingénierie : 
-- branches par feature, 
-- ADR, 
-- Plans de dev versionnés.
+Insister sur la démarche d'ingénierie :
+- **[Project](https://github.com/users/ebouchut/projects/7/views/2)** pour **orchestrer** ce qui suit 
+- **[Issues](https://github.com/ebouchut/learn-dev/issues)**: pour décrire les besoins fonctionnels et les bug
+- **[ADR](https://github.com/ebouchut/learn-dev/blob/dev/docs/adr/README.md)** C'est l'**enregistrement des décisions d'architecture**s pour aider les nouveaux arrivants sur le projet (ou moi dans 6 mois :-).
+  >  Chaque *ADR* répond à cette question: pourquoi a-t-on fait ce choix ?  
+    - **Problème** à résoudre et les **contraintes**.
+    - **Critères de décision**: ce qui a guidé le choix.
+    - **Options** envisagées
+    - **Option retenue**: pourquoi, bénéfices et compromis.
+    - **Avantages/inconvénients** de chaque option.
+- **[Plans](https://github.com/ebouchut/learn-dev/tree/dev/docs/plans)** de dev versionnés: Ils décrivent quoi faire et comment.
+- [Branche Git par fonctionnalité](https://github.com/ebouchut/learn-dev/tree/dev?tab=contributing-ov-file#git-branching-strategy) pour que chaque développement n'impacte pas la branche commune (`dev`).
+- [Pull-Requests](https://github.com/ebouchut/learn-dev/pulls?q=is:pr+is:closed)
+- **`YAGNI`** : *You aren't gonna need it*  
+  > Ne construire que ce qui est nécessaire pour la v1.
 
 C'est de la communication écrite (compétence transversale).
 -->
@@ -540,7 +575,7 @@ Rappeler que le jury évalue des compétences, pas des fonctionnalités.
 
 - **Difficultés** : 
     - concurrence à l'inscription (contrainte d'unicité captée),
-    - sécurité du rendu Markdown (XSS → assainissement),
+    - sécurité du rendu Markdown (assinissement des entrées pour éviter XSS),
     - un seul `h1` par page (accessibilité).
 - **Évolutions** : 
     - brancher **MongoDB** (NoSQL),
