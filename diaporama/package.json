@@ -8,8 +8,8 @@
   },
   "scripts": {
     "dev": "slidev slides.md --open",
-    "export:pdf": "slidev export slides.md --output ../bouchut-eric-diaporama.pdf",
-    "export:pptx": "slidev export slides.md --format pptx --output ../bouchut-eric-diaporama.pptx",
+    "export:pdf": "slidev export slides.md --per-slide --output ../bouchut-eric-diaporama.pdf",
+    "export:pptx": "slidev export slides.md --per-slide --format pptx --output ../bouchut-eric-diaporama.pptx",
     "build": "slidev build slides.md"
   },
   "devDependencies": {
