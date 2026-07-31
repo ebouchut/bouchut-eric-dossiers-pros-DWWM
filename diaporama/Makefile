@@ -11,6 +11,9 @@ OUT_DIR := ..
 PDF     := $(OUT_DIR)/bouchut-eric-diaporama.pdf
 PPTX    := $(OUT_DIR)/bouchut-eric-diaporama.pptx
 
+# The deck depends on its sources and on the local theme (styles, layouts, layers).
+SOURCES := slides.md package.json $(wildcard theme/*.vue theme/*.ts theme/*.json theme/styles/* theme/layouts/*)
+
 .PHONY: all dev pdf pptx html clean
 all: pdf pptx html
 
@@ -18,16 +21,16 @@ dev:
 	npm run dev
 
 pdf: $(PDF)
-$(PDF): slides.md style.css package.json
+$(PDF): $(SOURCES)
 	npm run export:pdf
 	@echo "OK => $(PDF)"
 
 pptx: $(PPTX)
-$(PPTX): slides.md style.css package.json
+$(PPTX): $(SOURCES)
 	npm run export:pptx
 	@echo "OK => $(PPTX)"
 
-html: slides.md style.css package.json
+html: $(SOURCES)
 	npm run build
 	@echo "OK => dist/"
 

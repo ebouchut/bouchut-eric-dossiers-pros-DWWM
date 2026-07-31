@@ -1,0 +1,20 @@
+{
+  "name": "slidev-theme-learn-dev",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Catppuccin Latte theme for the learn-dev slide decks (local, unpublished)",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20",
+    "slidev": ">=52"
+  },
+  "slidev": {
+    "defaults": {
+      "fonts": {
+        "mono": "Fira Code",
+        "sans": "Avenir Next,Nunito Sans",
+        "local": "Avenir Next"
+      }
+    }
+  }
+}

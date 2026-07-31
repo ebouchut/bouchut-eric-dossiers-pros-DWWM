@@ -1,5 +1,5 @@
 ---
-theme: default
+theme: ./theme
 title: learn-dev — Présentation
 info: |
   Diaporama de soutenance — Titre professionnel Développeur Web et Web Mobile (DWWM),
@@ -10,6 +10,7 @@ aspectRatio: 16/9
 transition: slide-left
 mdc: true
 download: false
+colorSchema: auto
 layout: cover
 ---
 

@@ -12,10 +12,14 @@ repository root: `bouchut-eric-diaporama.pdf` and `bouchut-eric-diaporama.pptx`.
 | File | Purpose |
 |---|---|
 | `slides.md` | Slide deck source (French), one block per slide, presenter notes as HTML comments |
-| `style.css` | Catppuccin Latte palette over the Slidev `default` theme |
+| `theme/` | Local `slidev-theme-learn-dev` theme: Catppuccin Latte tokens, layouts, page-number footer (see [theme/README.md](theme/README.md)) |
 | `public/images/` | Screenshots and diagrams referenced as `/images/...` |
 | `package.json` | Slidev CLI + `playwright-chromium` (required by the exporters) |
 | `Makefile` | Wrappers around the npm scripts |
+
+The deck uses the local theme by path (`theme: ./theme` in the headmatter) — a local
+Slidev theme does not need to be published to npm. All colors go through the CSS design
+tokens declared in [theme/styles/tokens.css](theme/styles/tokens.css).
 
 ## Requirements
 

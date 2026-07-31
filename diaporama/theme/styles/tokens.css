@@ -1,0 +1,72 @@
+/*
+ * Design tokens of the learn-dev theme.
+ *
+ * Two tiers:
+ *  1. Palette tokens (--latte-*): raw Catppuccin Latte colors.
+ *     https://catppuccin.com/palette - Latte (light) flavor.
+ *  2. Semantic tokens (--ld-*): what the theme actually uses. Components and
+ *     layouts reference ONLY semantic tokens, never palette values directly,
+ *     so swapping the palette (e.g. for a dark flavor) is a one-block change.
+ *
+ * Declared on :root on purpose: global layers (e.g. the page-number footer)
+ * live OUTSIDE .slidev-layout and must still resolve the tokens.
+ */
+
+:root {
+  /* -- Palette: Catppuccin Latte (light flavor) ----------------------- */
+  --latte-base: #eff1f5;     /* lightest background */
+  --latte-mantle: #e6e9ef;   /* soft background */
+  --latte-crust: #dce0e8;    /* borders */
+  --latte-surface0: #ccd0da; /* stripes, subtle fills */
+  --latte-text: #4c4f69;     /* main text */
+  --latte-subtext: #6c6f85;  /* secondary text */
+  --latte-mauve: #8839ef;    /* primary accent */
+  --latte-blue: #1e66f5;     /* links */
+  --latte-lavender: #7287fd; /* subtle accent */
+
+  /* -- Palette: Catppuccin Mocha (dark flavor) ------------------------ */
+  --mocha-base: #1e1e2e;     /* darkest background */
+  --mocha-mantle: #181825;   /* soft background */
+  --mocha-crust: #11111b;    /* borders */
+  --mocha-surface0: #313244; /* stripes, subtle fills */
+  --mocha-text: #cdd6f4;     /* main text */
+  --mocha-subtext: #a6adc8;  /* secondary text */
+  --mocha-mauve: #cba6f7;    /* primary accent */
+  --mocha-blue: #89b4fa;     /* links */
+  --mocha-lavender: #b4befe; /* subtle accent */
+
+  /* -- Semantic tokens (light mapping) -------------------------------- */
+  --ld-bg: var(--latte-base);           /* page background */
+  --ld-bg-soft: var(--latte-mantle);    /* code blocks, quotes, table headers */
+  --ld-border: var(--latte-crust);      /* borders around code blocks */
+  --ld-stripe: var(--latte-surface0);   /* table row stripes */
+  --ld-text: var(--latte-text);         /* body text */
+  --ld-text-muted: var(--latte-subtext);/* secondary text, small headings */
+  --ld-heading: var(--latte-mauve);     /* headings, inline code, accents */
+  --ld-link: var(--latte-blue);         /* hyperlinks */
+  --ld-accent: var(--latte-lavender);   /* reserved for subtle accents */
+  --ld-page-number: var(--latte-subtext); /* slide-number footer */
+  --ld-diagram-bg: transparent;         /* backdrop behind Mermaid diagrams */
+}
+
+/*
+ * Dark mode: Slidev toggles the `dark`/`light` classes on <html>
+ * (colorSchema `auto` follows the system preference; the `d` key toggles).
+ * Only the SEMANTIC tokens are remapped -- everything styled through them
+ * (base.css, the page-number footer, the cover gradient) adapts for free.
+ */
+html.dark {
+  --ld-bg: var(--mocha-base);
+  --ld-bg-soft: var(--mocha-mantle);
+  --ld-border: var(--mocha-crust);
+  --ld-stripe: var(--mocha-surface0);
+  --ld-text: var(--mocha-text);
+  --ld-text-muted: var(--mocha-subtext);
+  --ld-heading: var(--mocha-mauve);
+  --ld-link: var(--mocha-blue);
+  --ld-accent: var(--mocha-lavender);
+  --ld-page-number: var(--mocha-subtext);
+  /* Mermaid renders with a light color scheme; keep it on a light chip so
+     the diagrams stay readable on the dark background. */
+  --ld-diagram-bg: var(--latte-mantle);
+}

@@ -1,0 +1,86 @@
+/*
+ * Component styling of the learn-dev theme, built exclusively on the
+ * semantic tokens declared in tokens.css (no hard-coded values here).
+ */
+
+.slidev-layout {
+  background: var(--ld-bg);
+  color: var(--ld-text);
+}
+
+.slidev-layout h1,
+.slidev-layout h2,
+.slidev-layout h3 {
+  color: var(--ld-heading);
+}
+
+.slidev-layout h1 small,
+.slidev-layout h2 small {
+  color: var(--ld-text-muted);
+  font-size: 0.55em;
+  font-weight: 400;
+}
+
+.slidev-layout a {
+  color: var(--ld-link);
+}
+
+.slidev-layout strong {
+  color: var(--ld-text);
+}
+
+.slidev-layout blockquote {
+  background: var(--ld-bg-soft);
+  border-left: 4px solid var(--ld-heading);
+  color: var(--ld-text);
+}
+
+/* Cover and section divider slides: soft wash, bold centered title */
+.slidev-layout.cover,
+.slidev-layout.section {
+  background: linear-gradient(135deg, var(--ld-bg) 0%, var(--ld-bg-soft) 100%);
+}
+
+.slidev-layout.cover h1,
+.slidev-layout.section h1 {
+  color: var(--ld-heading);
+  font-weight: 700;
+}
+
+/* Code blocks on the soft shade, subtle border */
+.slidev-layout pre,
+.slidev-layout .slidev-code {
+  background: var(--ld-bg-soft) !important;
+  border: 1px solid var(--ld-border);
+  border-radius: 8px;
+}
+
+.slidev-layout code:not(pre code) {
+  background: var(--ld-bg-soft);
+  color: var(--ld-heading);
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+}
+
+/* Mermaid diagrams render with a light color scheme of their own; the token
+   is transparent in light mode and a light chip in dark mode (readability). */
+.slidev-layout .mermaid {
+  background: var(--ld-diagram-bg);
+  border-radius: 8px;
+  padding: 0.5rem;
+  display: inline-block;
+}
+
+/* Tables: crisp header, striped rows */
+.slidev-layout table {
+  font-size: 0.9em;
+}
+
+.slidev-layout th {
+  background: var(--ld-bg-soft);
+  color: var(--ld-heading);
+}
+
+.slidev-layout tr:nth-child(even) td {
+  background: color-mix(in srgb, var(--ld-stripe) 35%, transparent);
+}
