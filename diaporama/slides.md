@@ -8,8 +8,8 @@ author: Eric Bouchut
 lang: fr
 aspectRatio: 16/9
 transition: slide-left
-download: false
 mdc: true
+download: false
 layout: cover
 ---
 
@@ -58,6 +58,14 @@ Me présenter.
 - Annoncer la solution en une phrase. 
 - Enchaîner sur ce qu'est concrètement l'application.
 -->
+
+---
+layout: full
+---
+
+<Transform :scale="1.2" origin="top">
+    <img src="/images/learn-dev-home.png" class="h-100 mx-auto rounded" />
+</Transform>
 
 ---
 
@@ -153,7 +161,6 @@ C'est de la communication écrite (compétence transversale).
   - **Marc** (formateur)
     - rédige les leçons de cours qu'il conçoit en Markdown, 
     - gère la publication de ses cours,
-    - gère l'inscription des étudiants.
   - **Awa** (admin):
     - gère les comptes,
     - modère en toute sécurité.
@@ -172,47 +179,75 @@ layout: section
 # Base de données  <small>(CP5)</small>
 
 ---
+layout: two-cols
+---
+
+::left::
 
 # Base de données — MCD
 
 Modèle Conceptuel de Données
 
-<div class="grid grid-cols-2 gap-3 items-center">
 
-<div>
+- Vue **client** de ses **donnés métier** :
+    - **entités**
+        - identifiants (soulignés)
+    - **relations**
+        - cardinalités
 
-- Entités
-- Relations
-- Cardinalités
+- Aucune syntaxe technique (base de données)
 
-</div>
+::right::
 
-<img src="/images/mcd.png" class="h-100 mx-auto rounded" />
+  <img src="/images/mcd.png" class="max-h-[85%] max-w-[85%]" alt="MCD" />
 
-</div>
 
 
 <!--
-(~1,5 min) 
-Présenter la modélisation Merise (MCD). 
-9 entités : utilisateurs, rôles, cours, leçons, inscriptions, jetons, audit. 
-Montrer les associations et cardinalités.
+(~1,5 min)
+
+- Présenter la modélisation Merise (MCD). 
+- 9 entités : utilisateurs, rôles, cours, leçons, inscriptions, jetons, audit. 
+- Montrer les associations et cardinalités.
 -->
+
 
 ---
+layout: two-cols
+---
 
-# Base de données — MLD <small>(CP5)</small>
 
-Modèle Logique de Données (MLD)
+::left::
 
-<img src="/images/mld.svg" class="h-100 mx-auto rounded" />
+# Base de données — MLD
+
+Modèle Logique de Données
+
+
+- **Structure relationnelle**
+    - **tables**
+    - **tables de jointure** 
+        - modélisent la cardinalité `N,N`
+    - **clé étrangères** (Foreign Keys)
+        - précédées par `#`
+        - modélisent les cardinalités `1,1` et `1,N`
+- **Indépendant de la base de données**
+
+
+::right::
+
+<Transform :scale="1.2" origin="top">
+  <img src="/images/mld.svg" class="h-100 mx-auto rounded" />
+</Transform>
 
 <!--
-(~1,5 min) 
-Présenter la modélisation Merise (MLD ici). 
+(~1,5 min)
+
 9 entités : utilisateurs, rôles, cours, leçons, inscriptions, jetons, audit. 
-Montrer les tables, tables de jonctions et clés étrangères.
+- Relationnel mais pas spécifique à une base de données.
+- PAS encore les **types** de colonnes, contraintes... 
 -->
+
 
 ---
 
@@ -220,19 +255,29 @@ Montrer les tables, tables de jonctions et clés étrangères.
 
 Modèle Physique de Données
 
-- **PostgreSQL 17**, **9 tables**, migrations **Liquibase** appliquées au démarrage.
-- **Clé UUID** pour les utilisateurs (anti-IDOR) ; **BIGINT** ailleurs ; clés composites.
-- **Contraintes** : `UNIQUE`, `CHECK`, `FK ON DELETE CASCADE` ; Hibernate en `validate`.
+- Syntaxe spécifique à la base de données relationelle **PostgreSQL**,
+- **Clé primaire**
+    - **`UUID** pour les utilisateurs (anti-IDOR) 
+    - **`BIGINT`** pour toute les autres
+    - **Clé primaire composite** pour les 2 tables de jonction 
 
-<img src="/images/mpd.png" class="h-70 mx-auto rounded" />
 
 <!--
 (~1,5 min) 
-Justifier PostgreSQL (ADR-0007), 
-Liquibase (ADR-0005), 
-UUID (ADR-0003).
-Souligner l'intégrité au plus près des données + contrôle anti-dérive de schéma en CI.
+
+- Pourquoi PostgreSQL ? ([ADR-0007]()), 
+- Liquibase ([ADR-0005]()), 
+- UUID ([ADR-0003]()).
+- Contrôle anti-dérive de schéma fait par la CI et au démarrage de l'application.
 -->
+
+---
+layout: full
+---
+
+# Modèle Physique de Données
+
+<img src="/images/mpd.svg" class="max-h-[100%] max-w-[100%]" alt="MPD" />
 
 ---
 
@@ -262,14 +307,49 @@ contrastes mesurés. C'est CP2 (maquetter) : Web ET Web mobile.
 
 # Environnement technique <small>(CP1)</small>
 
-- **Java 21** + **Spring Boot 3.5** (Web MVC, Security, Data JPA, Validation, Mail).
-- **Thymeleaf** (vues), 
-- **commonmark-java** 
-- **jsoup**
+- **Java 21**
+- **Maven** (dépendances, cycle de vie logiciel)
+- **Spring Boot 3.5** (Web MVC, Data JPA, Validation, Mail)
+- **Spring Security** (*RBAC*), 
+- **Thymeleaf** (templates/vues), 
+- **commonmark-java**: conversion du *Markdown* en *HTML*
+- **jsoup**: assainissement des tags et attributs HTML 
 - **PostgreSQL 17** + **Liquibase**.
-- **Podman / Docker Compose** (Postgres, Mongo, Mailpit) ; **Maven** ; **Git** ; **CI GitHub Actions**.
-- Architecture **en couches** :
+- **Docker** et **Docker Compose** (Postgres, Mongo, Mailpit)
+- **Git**: Gestion de l'historique du code source
+- **CI**:  GitHub Actions.
 
+
+<!--
+(~2 min) 
+
+Balayer la stack:
+- **Java** langage de **Programmation Orientée Objet** (*POO*)
+- **Maven**: outil qui:
+    - gére les dépéndances (installation, mise à jour, résoluition de conflits, dépendances transitives)
+- **Spring Boot** contient une galaxie de frameworks j'ai utilisés pour:
+  - le MVC
+- **Spring Security**: framework de sécurité qui gère :
+    - l'**authentification** via le **formulaire de connexion** 
+    - le **controle d'accès** basé sur les **roles** 
+- **Thymeleaf**: moteur templates utilisé pour le rendu coté serveur
+-->
+
+---
+layout: section
+---
+
+# Développement
+
+---
+
+# Architecture en couches
+
+MVC (Controller Model View)
+
+- **Controller`**: Reçoit les requêtes HTTP entrantes et dispatche leur traitement et renvoie la réponse
+    - **`Service`** (règles métier), il utilise un ou des: 
+        - **`Repository`**
 
 ```mermaid { scale: 0.8 }
 flowchart LR
@@ -289,32 +369,24 @@ flowchart LR
     view        -.->|HTML| browser
 ```
 
-
-<!--
-(~2 min) 
-Balayer la stack
-justifier le rendu côté serveur (simplicité, sécurité, SEO).
-Montrer l'outillage (conteneurs, CI). 
-C'est CP1.
--->
-
----
-layout: section
----
-
-# Développement
-
 ---
 
 # Deux fonctionnalités CRUD
 
-- **Feature 1 — Inscription d'un utilisateur** (validation, sécurité, jeu d'essai).
-- **Feature 2 — Gestion des cours et leçons** (cycle de vie, autorisations).
-- Motif commun : **Contrôleur → Service (règles métier) → Repository**, erreurs HTTP
-  explicites (**403 / 404 / 409**).
+- **Fonctionnalités**:
+  1. Inscription d'un utilisateur**
+      - validation, 
+      - sécurité, 
+      - jeu d'essai.
+  2.Gestion des cours et leçons**
+    - cycle de vie, 
+    - autorisations.
+- Erreurs HTTP explicites (**403 / 404 / 409**).
 
 <!--
-(~1 min) Annoncer les 2 features CRUD qui vont être démontrées et l'architecture commune.
+(~1 min)
+
+Annoncer les features qui vont être expliquées ensuite.
 -->
 
 ---
@@ -548,26 +620,6 @@ layout: section
 
 # Conclusion
 
----
-
-# Bilan des compétences
-
-| CP | Compétence | Où |
-|---|---|---|
-| CP1 | Environnement de travail | Stack, Docker, CI |
-| CP2 | Maquetter | Figma, RGAA, responsive |
-| CP3 | Interfaces statiques | Thymeleaf, CSS, thèmes |
-| CP4 | Interfaces dynamiques | Formulaires, PRG, Markdown |
-| CP5 | Base de données | Merise, PostgreSQL, Liquibase |
-| CP6 | Accès aux données | Spring Data JPA (+ Mongo) |
-| CP7 | Composants métier | Services, règles, erreurs HTTP |
-| CP8 | Déploiement | Docker, Compose, CI/CD |
-
-<!--
-(~1,5 min) 
-Récapituler : les 8 compétences sont couvertes.
-Rappeler que le jury évalue des compétences, pas des fonctionnalités.
--->
 
 ---
 
