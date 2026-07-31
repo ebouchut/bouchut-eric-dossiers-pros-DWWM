@@ -257,7 +257,7 @@ Modèle Physique de Données
 
 - Syntaxe spécifique à la base de données relationelle **PostgreSQL**,
 - **Clé primaire**
-    - **`UUID** pour les utilisateurs (anti-IDOR) 
+    - **`UUID`** pour la table `users` (anti-IDOR) 
     - **`BIGINT`** pour toute les autres
     - **Clé primaire composite** pour les 2 tables de jonction 
 
@@ -347,26 +347,35 @@ layout: section
 
 MVC (Controller Model View)
 
-- **Controller`**: Reçoit les requêtes HTTP entrantes et dispatche leur traitement et renvoie la réponse
-    - **`Service`** (règles métier), il utilise un ou des: 
-        - **`Repository`**
+- **`Controller`**  reçoit les requêtes HTTP entrantes et dispatche leur traitement et renvoie la réponse
+    - **`Service`** applique les règles métier d'une entité. 
+        - **`Repository`** fait les interactions avec la base de données pour une entité.
 
-```mermaid { scale: 0.8 }
+```mermaid { scale: 0.6 }
 flowchart LR
-    browser[Navigateur]
+    browser@{shape: curv-trap, label: "Navigateur Web"}
     controller[Contrôleur]
     service["Service<br/>règles métier"]
-    repository["Repository<br/>Spring Data JPA"]
-    db[(PostgreSQL)]
-    view[Vue Thymeleaf]
-    
+    repository["Repository<br/>(Spring Data JPA)"]
+    db["Base de données
+        (PostgreSQL)"]
+    thymeleaf[Thymeleaf]
+    views@{ shape: docs, label: "Templates de Vue" }
+    view@{  shape: doc,  label: "'Template de Vue" }
 
     browser     -->|HTTP| controller
     controller  --> service
     service     --> repository
     repository  --> db
-    controller  -.->|nom de vue| view
-    view        -.->|HTML| browser
+    db          -.-> repository
+    repository  -.-> service
+    service     -.-> controller
+    controller  -->|nom de template de vue| thymeleaf
+    thymeleaf   -->|cherche| views
+    views       -.-> view
+    view        -.->|template de vue| thymeleaf
+    thymeleaf   -->|Renseigne la vue| thymeleaf
+    thymeleaf   -.-> |"HTML (vue remplie)"| browser
 ```
 
 ---
@@ -374,19 +383,23 @@ flowchart LR
 # Deux fonctionnalités CRUD
 
 - **Fonctionnalités**:
-  1. Inscription d'un utilisateur**
+  1. **Inscription d'un utilisateur**
       - validation, 
       - sécurité, 
       - jeu d'essai.
-  2.Gestion des cours et leçons**
+  2. **Gestion des cours et leçons**
     - cycle de vie, 
     - autorisations.
-- Erreurs HTTP explicites (**403 / 404 / 409**).
+- **Erreurs HTTP** explicites :
+    - `403`: Pas authentifié ou authorisation insuffisante
+    - `404`: On ne le présente plus
+    - `409`: conflit dans les paramètres de la requête
 
 <!--
 (~1 min)
 
-Annoncer les features qui vont être expliquées ensuite.
+- Voici **2 features** que je vais détailler par la suite.
+- **Erreur `403`**: Si le login échoue ne **jamais** préciser **la cause** (login n'existe pas ou mot de passe est incorrect) mais renvoyer `403`.
 -->
 
 ---
