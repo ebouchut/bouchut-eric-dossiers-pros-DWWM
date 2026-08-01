@@ -15,7 +15,7 @@
 -->
 <template>
   <footer
-    v-if="$nav.currentLayout !== 'cover'"
+    v-if="!['cover', 'intro'].includes($nav.currentLayout)"
     class="absolute bottom-0 left-0 right-0 p-2 text-right text-xs pointer-events-none"
   >
     {{ $nav.currentPage }} / {{ $nav.total }}

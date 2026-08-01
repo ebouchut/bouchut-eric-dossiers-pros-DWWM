@@ -8,10 +8,27 @@
   color: var(--ld-text);
 }
 
-.slidev-layout h1,
-.slidev-layout h2,
-.slidev-layout h3 {
+/*
+ * Heading hierarchy. The Slidev CSS reset flattens heading weights
+ * (h1..h6 { font-weight: inherit }), so without these rules h1 and h2 only
+ * differ by a modest font-size step and look alike. Sizes for h2/h3
+ * deliberately override the theme-default typography loaded before this file.
+ */
+.slidev-layout h1 {
   color: var(--ld-heading);
+  font-weight: 700;
+}
+
+.slidev-layout h2 {
+  color: var(--ld-heading-sub);
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+.slidev-layout h3 {
+  color: var(--ld-text-muted);
+  font-weight: 600;
+  font-size: 1.25rem;
 }
 
 .slidev-layout h1 small,
@@ -35,16 +52,27 @@
   color: var(--ld-text);
 }
 
-/* Cover and section divider slides: soft wash, bold centered title */
+/* Cover-family (cover, intro) and section divider slides: soft wash, bold title */
 .slidev-layout.cover,
+.slidev-layout.intro,
 .slidev-layout.section {
   background: linear-gradient(135deg, var(--ld-bg) 0%, var(--ld-bg-soft) 100%);
 }
 
 .slidev-layout.cover h1,
+.slidev-layout.intro h1,
 .slidev-layout.section h1 {
   color: var(--ld-heading);
   font-weight: 700;
+}
+
+/* The cover/intro subtitle keeps its original look (mauve, regular, text-3xl),
+   unaffected by the content-slide h2 hierarchy above. */
+.slidev-layout.cover h2,
+.slidev-layout.intro h2 {
+  color: var(--ld-heading);
+  font-weight: 400;
+  font-size: 1.875rem;
 }
 
 /* Code blocks on the soft shade, subtle border */

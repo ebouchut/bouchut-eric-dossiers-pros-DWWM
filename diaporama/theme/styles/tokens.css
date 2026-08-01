@@ -42,7 +42,8 @@
   --ld-stripe: var(--latte-surface0);   /* table row stripes */
   --ld-text: var(--latte-text);         /* body text */
   --ld-text-muted: var(--latte-subtext);/* secondary text, small headings */
-  --ld-heading: var(--latte-mauve);     /* headings, inline code, accents */
+  --ld-heading: var(--latte-mauve);     /* h1 / slide titles, inline code, accents */
+  --ld-heading-sub: var(--latte-text);  /* h2 / sub-section headings */
   --ld-link: var(--latte-blue);         /* hyperlinks */
   --ld-accent: var(--latte-lavender);   /* reserved for subtle accents */
   --ld-page-number: var(--latte-subtext); /* slide-number footer */
@@ -63,6 +64,7 @@ html.dark {
   --ld-text: var(--mocha-text);
   --ld-text-muted: var(--mocha-subtext);
   --ld-heading: var(--mocha-mauve);
+  --ld-heading-sub: var(--mocha-text);
   --ld-link: var(--mocha-blue);
   --ld-accent: var(--mocha-lavender);
   --ld-page-number: var(--mocha-subtext);
