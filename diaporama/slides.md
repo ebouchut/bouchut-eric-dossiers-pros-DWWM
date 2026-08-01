@@ -30,11 +30,20 @@ Soutenance — RNCP 37674 — session août 2026
 - Se présenter brièvement.
 -->
 
+
+---
+layout: quote
+---
+
+Apprendre la programmation, étape par étape
+
+
 ---
 layout: section
 ---
 
 # Introduction
+
 
 ---
 
@@ -654,16 +663,19 @@ layout: section
 
 ---
 
-# Challenges et évolutions
+# Challenges
 
-- **Challenges** : 
-    - concurrence à l'inscription (contrainte d'unicité captée),
-    - sécurité du rendu Markdown (assinissement des entrées pour éviter XSS),
-    - un seul `h1` par page (accessibilité).
-- **Évolutions** : 
-    - brancher **MongoDB** (NoSQL),
-    - suivre la progression leçon par leçon,
-    - API REST pour utiliser de React.
+- concurrence à l'inscription (contrainte d'unicité captée),
+- sécurité du rendu Markdown (assinissement des entrées pour éviter XSS),
+- un seul `h1` par page (accessibilité).
+
+---
+
+# Evolutions
+
+- brancher **MongoDB** (NoSQL),
+- API REST pour utiliser de React.
+- suivre la progression leçon par leçon,
 
 <!--
 (~1 min)
@@ -673,20 +685,24 @@ notamment le volet NoSQL.
 -->
 
 ---
+
+- **Dépôt** : [github.com/ebouchut/learn-dev](https://github.com/ebouchut/learn-dev)
+- **Projet** : [github.com/users/ebouchut/projects/7](https://github.com/users/ebouchut/projects/7)
+- **Décisions d'architecture**: [ADRs](https://github.com/ebouchut/learn-dev/blob/dev/docs/adr/README.md#index)
+
+
+---
 layout: end
 ---
 
 # Merci de votre attention.
 
 
-Projet : **[github.com/ebouchut/learn-dev](https://github.com/ebouchut/learn-dev)**
-- Dossier : https://github.com/users/ebouchut/projects/7/views/2
-
 Des questions ?
 
 <!--
 (~0,5 min)
 
-Remercier le jury et l'équipe pédagogique. 
-Inviter aux questions.
+- Je **vous** remercie ainsi que nos **formateurs**. 
+- Inviter aux **questions**.
 -->

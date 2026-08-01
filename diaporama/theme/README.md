@@ -34,6 +34,21 @@ press `d` to toggle manually — the choice is pinned in `localStorage` under
 color scheme and sit on a light chip in dark mode. **Exports (PDF/PPTX) always render in
 light mode** — Slidev forces it unless `--dark` is passed.
 
+## Layout coverage
+
+All [built-in Slidev layouts](https://sli.dev/builtin/layouts) render with the theme
+tokens. See [example.md](example.md) for one slide per layout
+(`npm exec slidev theme/example.md` to browse it).
+
+| Layouts | Styling |
+|---|---|
+| `cover`, `intro`, `section` | Gradient wash, bold mauve `h1`, mauve regular subtitle (`h2`) |
+| `quote` | Gradient, centered large italic text framed by French guillemets |
+| `fact`, `statement`, `end` | Gradient; `end` is centered and shows no page number |
+| `two-cols`, `two-cols-header` | Column gap (`two-cols` renders the `two-columns` class) |
+| `default`, `center`, `full`, `image`, `image-left`, `image-right`, `iframe-left`, `iframe-right` | Inherit the base token styling (background, text, headings) |
+| `iframe`, `none` | Intentionally unstyled (no `.slidev-layout` root to hook into) |
+
 ## Design rules
 
 - Layouts and components reference **semantic tokens only** (`--ld-*`); the raw palette

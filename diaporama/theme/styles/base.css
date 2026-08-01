@@ -52,10 +52,18 @@
   color: var(--ld-text);
 }
 
-/* Cover-family (cover, intro) and section divider slides: soft wash, bold title */
+/*
+ * Cover family (cover, intro), section dividers, and emphasis slides
+ * (quote, fact, statement, end): the same soft gradient wash, so every
+ * "special" slide shares one visual signature.
+ */
 .slidev-layout.cover,
 .slidev-layout.intro,
-.slidev-layout.section {
+.slidev-layout.section,
+.slidev-layout.quote,
+.slidev-layout.fact,
+.slidev-layout.statement,
+.slidev-layout.end {
   background: linear-gradient(135deg, var(--ld-bg) 0%, var(--ld-bg-soft) 100%);
 }
 
@@ -73,6 +81,59 @@
   color: var(--ld-heading);
   font-weight: 400;
   font-size: 1.875rem;
+}
+
+/* Quote slides: centered, large italic text framed by French guillemets */
+.slidev-layout.quote {
+  display: grid;
+  place-content: center;
+  text-align: center;
+}
+
+.slidev-layout.quote p {
+  font-size: 1.75rem;
+  font-style: italic;
+  color: var(--ld-text);
+}
+
+.slidev-layout.quote p::before {
+  content: "\00AB\2009"; /* opening guillemet + thin space */
+  color: var(--ld-heading);
+  font-weight: 700;
+}
+
+.slidev-layout.quote p::after {
+  content: "\2009\00BB"; /* thin space + closing guillemet */
+  color: var(--ld-heading);
+  font-weight: 700;
+}
+
+/* Fact slides: the huge h1 figure is mauve (generic rule); the caption
+   below reads as secondary text. */
+.slidev-layout.fact h1 + p {
+  color: var(--ld-text-muted);
+}
+
+/* End slide: centered farewell (no page number, see global-top.vue).
+   The client layout scopes `text-white ... bg-black` on its container and
+   the scoped attribute outranks class selectors, so the text color is set
+   directly on the elements: a direct declaration always beats inheritance. */
+.slidev-layout.end {
+  display: grid;
+  place-content: center;
+  text-align: center;
+}
+
+.slidev-layout.end p,
+.slidev-layout.end li {
+  color: var(--ld-text);
+}
+
+/* Two-column layouts: breathing room between the columns
+   (note: the two-cols layout renders the `two-columns` class). */
+.slidev-layout.two-columns,
+.slidev-layout.two-cols-header {
+  column-gap: 1.5rem;
 }
 
 /* Code blocks on the soft shade, subtle border */
