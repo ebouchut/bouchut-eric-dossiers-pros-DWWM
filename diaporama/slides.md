@@ -11,7 +11,7 @@ transition: slide-left
 mdc: true
 download: false
 colorSchema: auto
-layout: cover
+layout: intro
 ---
 
 # learn-dev
@@ -46,9 +46,8 @@ layout: section
     - un espace où un formateur publie et fait évoluer ses cours.
 - **Problème** : offrir un environnement multi-rôles simple, **sûr** et **accessible**.
 - **Solution** :
-
-> *`learn-dev` est une plateforme Web où des formateurs publient des cours composés de leçons
-> en Markdown, et où des étudiants s'inscrivent et les suivent.*
+  > *`learn-dev` est une plateforme Web où des formateurs publient des cours composés de leçons
+  > en Markdown, et où des étudiants s'inscrivent et les suivent.*
 
 <!--
 (~1 min) 
@@ -60,13 +59,6 @@ Me présenter.
 - Enchaîner sur ce qu'est concrètement l'application.
 -->
 
----
-layout: full
----
-
-<Transform :scale="1.2" origin="top">
-    <img src="/images/learn-dev-home.png" class="h-100 mx-auto rounded" />
-</Transform>
 
 ---
 
@@ -98,6 +90,14 @@ layout: full
 - Préciser : application Web rendue côté
 serveur (Spring Boot + Thymeleaf), responsive et accessible.
 -->
+
+---
+layout: image
+image: /images/learn-dev-home.png
+backgroundSize: contain
+---
+
+# Démo
 
 ---
 layout: section
@@ -135,7 +135,7 @@ Cette section aborde:
 Insister sur la démarche d'ingénierie :
 - **[Project](https://github.com/users/ebouchut/projects/7/views/2)** pour **orchestrer** ce qui suit 
 - **[Issues](https://github.com/ebouchut/learn-dev/issues)**: pour décrire les besoins fonctionnels et les bug
-- **[ADR](https://github.com/ebouchut/learn-dev/blob/dev/docs/adr/README.md)** C'est l'**enregistrement des décisions d'architecture**s pour aider les nouveaux arrivants sur le projet (ou moi dans 6 mois :-).
+- **[ADR](https://github.com/ebouchut/learn-dev/blob/dev/docs/adr/README.md)** C'est l'**enregistrement des décisions d'architecture**s pour aider les nouveaux arrivants sur le projet (ou moi-même dans 6 mois :-).
   >  Chaque *ADR* répond à cette question: pourquoi a-t-on fait ce choix ?  
     - **Problème** à résoudre et les **contraintes**.
     - **Critères de décision**: ce qui a guidé le choix.
@@ -153,19 +153,34 @@ C'est de la communication écrite (compétence transversale).
 
 ---
 
-# Cahier des charges et personas
+# Cahier des charges
 
-- **Objectifs** : s'inscrire et suivre des cours, publier/gérer des cours, administrer.
-- **Personas** :
-  - **Léa** (étudiante)
+## Objectifs fonctionnels
+
+- s'inscrire et suivre des cours, 
+- gérer et publier des cours,
+- administrer.
+
+## Objectifs non fonctionnel
+
+- sécurité, 
+- accessibilité (*RGAA*),
+- responsive, 
+- tests, 
+- Intégration Continue (CI).
+
+---
+
+# Personas
+
+- **Léa** (étudiante)
     - s'inscrit et suit des cours, sur mobile comme sur ordinateur.
-  - **Marc** (formateur)
+- **Marc** (formateur)
     - rédige les leçons de cours qu'il conçoit en Markdown, 
     - gère la publication de ses cours,
-  - **Awa** (admin):
+- **Awa** (admin):
     - gère les comptes,
     - modère en toute sécurité.
-- **Non fonctionnel** : sécurité, accessibilité RGAA, responsive, tests, CI.
 
 <!--
 (~2 min) 
@@ -389,8 +404,8 @@ flowchart LR
       - sécurité, 
       - jeu d'essai.
   2. **Gestion des cours et leçons**
-    - cycle de vie, 
-    - autorisations.
+      - cycle de vie, 
+      - autorisations.
 - **Erreurs HTTP** explicites :
     - `403`: Pas authentifié ou authorisation insuffisante
     - `404`: On ne le présente plus
@@ -446,14 +461,16 @@ CP4 (dynamique) + CP7 (composant métier).
 
 | Scénario | Attendu | Obtenu |
 |---|---|---|
-| Cas nominal | Compte créé, mot de passe **haché**, rôle `STUDENT` | Conforme |
-| E-mail déjà utilisé | Erreur de champ, **aucune** création | Conforme |
+| [Cas nominal](https://github.com/ebouchut/learn-dev/blob/2e892c853b7e04881a388faf3a663a83e9d93f28/src/test/java/com/ericbouchut/learndev/auth/RegistrationServiceTest.java#L30-L42) | Compte créé, mot de passe **haché**, rôle `STUDENT` | Conforme |
+| [E-mail déjà utilisé](https://github.com/ebouchut/learn-dev/blob/2e892c853b7e04881a388faf3a663a83e9d93f28/src/test/java/com/ericbouchut/learndev/auth/RegistrationServiceTest.java#L44-L52) | Erreur de champ, **aucune** création | Conforme |
 | Mot de passe trop court (< 8) | Rejet par la validation | Conforme |
-| E-mail invalide | Rejet par la validation | Conforme |
+| [E-mail invalide]() | Rejet par la validation | Conforme |
 
 <!--
-(~1,5 min) Dérouler le jeu d'essai : entrées, attendu, obtenu, écarts (aucun). Couvert par
-des tests automatisés.
+(~1,5 min)
+
+ - Dérouler le jeu d'essai : entrées, attendu, obtenu, écarts (aucun). 
+ - Couvert pardes tests automatisés.
 -->
 
 ---
@@ -637,9 +654,9 @@ layout: section
 
 ---
 
-# Difficultés et évolutions
+# Challenges et évolutions
 
-- **Difficultés** : 
+- **Challenges** : 
     - concurrence à l'inscription (contrainte d'unicité captée),
     - sécurité du rendu Markdown (assinissement des entrées pour éviter XSS),
     - un seul `h1` par page (accessibilité).
@@ -656,15 +673,14 @@ notamment le volet NoSQL.
 -->
 
 ---
-layout: center
-class: text-center
+layout: end
 ---
 
-# Merci
+# Merci de votre attention.
 
-**Merci de votre attention.**
 
 Projet : **[github.com/ebouchut/learn-dev](https://github.com/ebouchut/learn-dev)**
+- Dossier : https://github.com/users/ebouchut/projects/7/views/2
 
 Des questions ?
 
