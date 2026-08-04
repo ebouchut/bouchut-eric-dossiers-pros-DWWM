@@ -1301,63 +1301,75 @@ Me présenter.
 
 <hr />
 <h1 id="vue-densemble-de-learn-dev">Vue d&rsquo;ensemble de learn-dev<a class="headerlink" href="#vue-densemble-de-learn-dev" title="Permanent link"></a></h1>
+<h2 id="roles">Rôles<a class="headerlink" href="#roles" title="Permanent link"></a></h2>
 <ul>
-<li><strong>Trois rôles</strong> : <ul>
-<li><strong>étudiant</strong> (<code>STUDENT</code>), rôle par défaut</li>
+<li><strong>étudiant</strong> (<code>STUDENT</code>)</li>
 <li><strong>formateur</strong> (<code>INSTRUCTOR</code>)</li>
 <li><strong>administrateur</strong> (<code>ADMIN</code>)</li>
 </ul>
+<h2 id="authentification-et-autorisations">Authentification et Autorisations<a class="headerlink" href="#authentification-et-autorisations" title="Permanent link"></a></h2>
+<ul>
+<li><strong>Authentification obligatoire</strong></li>
+<li><strong>Autorisations</strong>  (<code>RBAC</code>) :  <blockquote>
+<p>Une fois <strong>authentifié</strong>, un utilisateur n&rsquo;a accès qu&rsquo;aux fonctionnalités que lui accorde son rôle. </p>
+</blockquote>
 </li>
 </ul>
-<p>`&mdash;</p>
-<div class="grid grid-cols-2 gap-6 items-center">
-
-<div>
-
-
-    - **`STUDENT`** (étudiant) :
-        - consultation du **catalogue**, 
-        - inscription à des **cours**, 
-            - lecture des **leçons**.
-    - **`INSTRUCTOR`** (formateur) :
-        - **création de contenu** (cours/leçons), 
-        - cycle de vie de **publication**, 
-        - gestion des **inscriptions**.
-    - **administrateur** (`ADMIN`) :  
-        - gestion des comptes, 
-        - modération des contenus.
-
-</div>
-
-<img src="/images/mockup-home.png" class="rounded shadow" />
-
-</div>
-
 <!--
-(~1 min)
-
-- Décrire les 3 rôles et le parcours nominal. 
+**Pages publiques** (pas d'authentification) : 
+- Page d'accueil,
+- RGPD,
+- Reset mot de passe.
 -->
 
+<hr />
+<h2 id="etudiant">Etudiant<a class="headerlink" href="#etudiant" title="Permanent link"></a></h2>
+<p>Rôle <strong><code>STUDENT</code></strong></p>
+<ul>
+<li>création de son compte:<ul>
+<li>rôle <strong>par défaut</strong></li>
+<li><strong>aucune restriction</strong></li>
+</ul>
+</li>
+<li>consultation du <strong>catalogue</strong> des cours, </li>
+<li>inscription à des <strong>cours</strong>, </li>
+<li>lecture des <strong>leçons</strong>.</li>
+</ul>
+<!--
+Pourquoi aucune restriction à l'enregistrement d'un étudiant?
+- Pas d'étape bloquante pour faciliter l'adhésion
+- évolution possible pour la v2:
+    - Ajout d'une approbation préalable par le formateur ou l'admin
+-->
+
+<hr />
+<h2 id="formateur">Formateur<a class="headerlink" href="#formateur" title="Permanent link"></a></h2>
+<p>Rôle <strong><code>INSTRUCTOR</code></strong> :</p>
+<ul>
+<li><strong>création de contenu</strong> (cours/leçons), </li>
+<li>cycle de vie de <strong>publication</strong> des cours et leçons, </li>
+<li>gestion des <strong>inscriptions</strong>.</li>
+</ul>
+<hr />
+<h2 id="administrateur">Administrateur<a class="headerlink" href="#administrateur" title="Permanent link"></a></h2>
+<p>Rôle <strong><code>ADMIN</code></strong>:  </p>
+<ul>
+<li>gestion des comptes, </li>
+<li>modération des contenus.</li>
+</ul>
 <hr />
 <h2 id="layout-section_1">layout: section<a class="headerlink" href="#layout-section_1" title="Permanent link"></a></h2>
-<h1 id="demo">Démo<a class="headerlink" href="#demo" title="Permanent link"></a></h1>
-<!--
-- application Web **responsive** et **accessible**, 
-    - rendu côté serveur avec *Thymeleaf*,
-    - codée:
-      - coté **serveur**: en Java + Spring Boot coté **serveur**
-      - coté **client**: en HTML, CSS, JS.
-
--->
-
-<hr />
-<h2 id="layout-section_2">layout: section<a class="headerlink" href="#layout-section_2" title="Permanent link"></a></h2>
 <h1 id="conception">Conception<a class="headerlink" href="#conception" title="Permanent link"></a></h1>
+<ul>
+<li>Gestion de projet</li>
+<li>Cahier des charges</li>
+<li>Modèlisation des données</li>
+<li>Maquettage et UX</li>
+<li>Environnement de travail</li>
+</ul>
 <!--
-Cette section aborde:
 
-- **l'organisation du travail** (aujourd'hui en solo, donc pas encore de SCRUM)
+- **organisation du travail** (aujourd'hui en solo, donc pas encore de SCRUM)
 - le cahier des charges
 - la modélisation des données et la base qui les stockent
 - le maquettage et l'expérience utilisateur (UX)
@@ -1400,12 +1412,61 @@ C'est de la communication écrite (compétence transversale).
 -->
 
 <hr />
+<h1 id="github-project">GitHub Project<a class="headerlink" href="#github-project" title="Permanent link"></a></h1>
+<p><img src="/images/github-project.png" /></p>
+<hr />
+<h1 id="github-issues">GitHub Issues<a class="headerlink" href="#github-issues" title="Permanent link"></a></h1>
+<p><img src="/images/github-issues.png" /></p>
+<hr />
+<h1 id="branches-git">Branches Git<a class="headerlink" href="#branches-git" title="Permanent link"></a></h1>
+<p>```mermaid {scale: 0.8}
+gitGraph
+    commit
+    branch dev
+    checkout dev
+    branch feat/add-home-page
+    checkout feat/add-home-page
+    commit
+    commit
+    checkout dev
+    merge feat/add-home-page</p>
+<pre><code>branch feat/add-footer
+commit
+commit
+checkout dev
+merge feat/add-footer
+
+checkout main
+merge dev
+commit type: HIGHLIGHT tag: "bug found"
+checkout main
+branch fix/htaccess
+commit
+checkout main
+merge fix/htaccess
+checkout dev
+merge fix/htaccess
+</code></pre>
+<p>```</p>
+<hr />
+<h1 id="conventional-commits">Conventional Commits<a class="headerlink" href="#conventional-commits" title="Permanent link"></a></h1>
+<p><br /><br /><br /> 
+
+- <strong><code>fix(frontend):</code></strong> <code>Collapse the mobile TOC when a section is picked</code>
+- <strong><code>feat(frontend):</code></strong> <code>Highlight the current section in the lesson TOC</code>
+- <strong><code>docs(adr):</code></strong> <code>Record the hybrid lesson TOC decision</code>
+- <strong><code>docs(plan):</code></strong> <strong><code>Add the lesson table of contents plan</code></strong></p>
+<hr />
+<h1 id="pull-requests">Pull Requests<a class="headerlink" href="#pull-requests" title="Permanent link"></a></h1>
+<p><img src="/images/github-pull-requests.png" /></p>
+<hr />
 <h1 id="cahier-des-charges">Cahier des charges<a class="headerlink" href="#cahier-des-charges" title="Permanent link"></a></h1>
 <h2 id="objectifs-fonctionnels">Objectifs fonctionnels<a class="headerlink" href="#objectifs-fonctionnels" title="Permanent link"></a></h2>
 <ul>
 <li>s&rsquo;inscrire et suivre des cours, </li>
 <li>gérer et publier des cours,</li>
-<li>administrer.</li>
+<li>administrer.
+</li>
 </ul>
 <h2 id="objectifs-non-fonctionnel">Objectifs non fonctionnel<a class="headerlink" href="#objectifs-non-fonctionnel" title="Permanent link"></a></h2>
 <ul>
@@ -1418,153 +1479,158 @@ C'est de la communication écrite (compétence transversale).
 <hr />
 <h1 id="personas">Personas<a class="headerlink" href="#personas" title="Permanent link"></a></h1>
 <ul>
-<li><strong>Léa</strong> (étudiante)<ul>
+<li><strong><code>Lea</code></strong> (<strong>étudiante</strong>) :<ul>
 <li>s&rsquo;inscrit et suit des cours, sur mobile comme sur ordinateur.</li>
 </ul>
 </li>
-<li><strong>Marc</strong> (formateur)<ul>
+<li><strong><code>Marc</code></strong> (<strong>formateur</strong>) :<ul>
 <li>rédige les leçons de cours qu&rsquo;il conçoit en Markdown, </li>
 <li>gère la publication de ses cours,</li>
 </ul>
 </li>
-<li><strong>Awa</strong> (admin):<ul>
+<li><strong><code>Awa</code></strong> (<strong>admin</strong>) :<ul>
 <li>gère les comptes,</li>
-<li>modère en toute sécurité.</li>
-</ul>
-</li>
-</ul>
+<li>modère en toute sécurité.
+
 <!--
 (~2 min) 
 Dérouler les besoins par persona. 
 Relier aux besoins non fonctionnels.
--->
-
+--></li>
+</ul>
+</li>
+</ul>
 <hr />
-<h2 id="layout-section_3">layout: section<a class="headerlink" href="#layout-section_3" title="Permanent link"></a></h2>
+<h2 id="layout-section_2">layout: section<a class="headerlink" href="#layout-section_2" title="Permanent link"></a></h2>
 <h1 id="base-de-donnees-cp5">Base de données  <small>(CP5)</small><a class="headerlink" href="#base-de-donnees-cp5" title="Permanent link"></a></h1>
 <hr />
 <h2 id="layout-two-cols">layout: two-cols<a class="headerlink" href="#layout-two-cols" title="Permanent link"></a></h2>
-<p>::left::</p>
+<p>::left::
+</p>
 <h1 id="base-de-donnees-mcd">Base de données — MCD<a class="headerlink" href="#base-de-donnees-mcd" title="Permanent link"></a></h1>
-<p>Modèle Conceptuel de Données</p>
-<ul>
-<li>
-<p>Vue <strong>client</strong> de ses <strong>donnés métier</strong> :</p>
-<ul>
-<li><strong>entités</strong><ul>
-<li>identifiants (soulignés)</li>
-</ul>
-</li>
-<li><strong>relations</strong><ul>
-<li>cardinalités</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p>Aucune syntaxe technique (base de données)</p>
-</li>
-</ul>
-<p>::right::</p>
-<p><img src="/images/mcd.png" class="max-h-[85%] max-w-[85%]" alt="MCD" /></p>
+<p>Modèle Conceptuel de Données
+
+
+- Vue <strong>client</strong> de ses <strong>donnés métier</strong> :
+    - <strong>entités</strong>
+        - identifiants (soulignés)
+    - <strong>relations</strong>
+        - cardinalités
+
+- Aucune syntaxe technique (base de données)
+
+::right::
+
+  <img src="/images/mcd.png" class="max-h-[85%] max-w-[85%]" alt="MCD" />
+
+
+
 <!--
 (~1,5 min)
 
 - Présenter la modélisation Merise (MCD). 
 - 9 entités : utilisateurs, rôles, cours, leçons, inscriptions, jetons, audit. 
 - Montrer les associations et cardinalités.
--->
-
+--></p>
 <hr />
 <h2 id="layout-two-cols_1">layout: two-cols<a class="headerlink" href="#layout-two-cols_1" title="Permanent link"></a></h2>
-<p>::left::</p>
+<p>::left::
+</p>
 <h1 id="base-de-donnees-mld">Base de données — MLD<a class="headerlink" href="#base-de-donnees-mld" title="Permanent link"></a></h1>
-<p>Modèle Logique de Données</p>
-<ul>
-<li><strong>Indépendant de la base de données</strong></li>
-<li><strong>Structure relationnelle</strong> partielle<ul>
-<li><strong>tables</strong></li>
-<li><strong>tables de jointure</strong> <ul>
-<li>modélisent la cardinalité <code>N,N</code></li>
-</ul>
-</li>
-<li><strong>clé étrangères</strong> (Foreign Keys)<ul>
-<li>précédées par <code>#</code></li>
-<li>modélisent les cardinalités <code>1,1</code> et <code>1,N</code></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>::right::</p>
-<p><Transform :scale="1.2" origin="top">
+<p>Modèle Logique de Données
+
+
+- <strong>Indépendant de la base de données</strong>
+- <strong>Structure relationnelle</strong> partielle
+    - <strong>tables</strong>
+    - <strong>tables de jointure</strong> 
+        - modélisent la cardinalité <code>N,N</code>
+    - <strong>clé étrangères</strong> (Foreign Keys)
+        - précédées par <code>#</code>
+        - modélisent les cardinalités <code>1,1</code> et <code>1,N</code>
+
+
+::right::
+
+<Transform :scale="1.2" origin="top">
   <img src="/images/mld.svg" class="h-100 mx-auto rounded" />
-</Transform></p>
+</Transform>
+
 <!--
 (~1,5 min)
 
 9 entités : utilisateurs, rôles, cours, leçons, inscriptions, jetons, audit. 
 - Relationnel mais pas spécifique à une base de données.
 - PAS encore les **types** de colonnes, contraintes... 
--->
-
+--></p>
 <hr />
 <h1 id="base-de-donnees-mpd">Base de données — MPD<a class="headerlink" href="#base-de-donnees-mpd" title="Permanent link"></a></h1>
-<p>Modèle Physique de Données</p>
-<ul>
-<li>Syntaxe spécifique au moteur de base de données relationelle (<em>SGBDR</em>)</li>
-<li><strong>PostgreSQL</strong> (ADR-06),</li>
-<li><strong>Clés primaires</strong>  (choix d&rsquo;architecture ADR-03) <ul>
-<li><strong><code>UUID</code></strong> pour la table <strong><code>users</code></strong><ul>
-<li>anti-<a href="https://en.wikipedia.org/wiki/Insecure_direct_object_reference">IDOR</a></li>
-<li>dans les 10 principales vulnérabilités <strong>OWASP</strong> </li>
-</ul>
-</li>
-<li><strong><code>BIGINT</code></strong> pour les autres tables</li>
-<li><strong>Clé primaire composite</strong> pour les 2 tables de jonction </li>
-</ul>
-</li>
-</ul>
-<!--
-(~1,5 min)
+<p>Modèle Physique de Données
 
-- Pourquoi PostgreSQL ? ([ADR-0007](https://github.com/ebouchut/learn-dev/blob/dev/docs/adr/0007-use-postgresql-over-mysql.md)), 
+- Syntaxe spécifique au moteur de base de données relationelle (<em>SGBDR</em>)
+- <strong>PostgreSQL</strong> (ADR-06),
+- <strong>Clés primaires</strong>  (choix d&rsquo;architecture ADR-03) 
+    - <strong><code>UUID</code></strong> pour la table <strong><code>users</code></strong>
+        - anti-<a href="https://en.wikipedia.org/wiki/Insecure_direct_object_reference">IDOR</a>
+        - dans les 10 principales vulnérabilités <strong>OWASP</strong> 
+    - <strong><code>BIGINT</code></strong> pour les autres tables
+    - <strong>Clé primaire composite</strong> pour les 2 tables de jonction 
+
+
+
+<!--
+(~1,5 min) 
+
+- Pourquoi PostgreSQL ? (<a href="https://github.com/ebouchut/learn-dev/blob/dev/docs/adr/0007-use-postgresql-over-mysql.md">ADR-0007</a>), 
 - Migrations BDD:
-    - *Liquibase* ([ADR-0005](https://github.com/ebouchut/learn-dev/blob/dev/docs/adr/0005-handwrite-liquibase-migrations-over-mcd-ddl.md)), 
-- `UUID` vs `BIGINT` ([ADR-0003](https://github.com/ebouchut/learn-dev/blob/dev/docs/adr/0003-uuid-pk-for-users-bigint-elsewhere.md))
+    - *Liquibase* (<a href="https://github.com/ebouchut/learn-dev/blob/dev/docs/adr/0005-handwrite-liquibase-migrations-over-mcd-ddl.md">ADR-0005</a>), 
+- <code>UUID</code> vs <code>BIGINT</code> (<a href="https://github.com/ebouchut/learn-dev/blob/dev/docs/adr/0003-uuid-pk-for-users-bigint-elsewhere.md">ADR-0003</a>)
     - anti-IDOR
     - random sur des grains de sables alignés entre 2 galaxies.
 - Contrôle **anti-dérive du schéma** fait :
     - au **démarrage de l'application**,
     - par la **CI**.
--->
-
+--></p>
 <hr />
 <h2 id="layout-full">layout: full<a class="headerlink" href="#layout-full" title="Permanent link"></a></h2>
 <h1 id="diagramme-mpd">Diagramme MPD<a class="headerlink" href="#diagramme-mpd" title="Permanent link"></a></h1>
 <p><img src="/images/mpd.svg" class="max-h-[100%] max-w-[100%]" alt="MPD" /></p>
 <hr />
 <h1 id="maquettage-et-accessibilite-cp2">Maquettage et accessibilité <small>(CP2)</small><a class="headerlink" href="#maquettage-et-accessibilite-cp2" title="Permanent link"></a></h1>
-<div class="grid grid-cols-[1fr_auto] gap-6 items-center">
+<p><div class="grid grid-cols-[1fr_auto] gap-6 items-center">
 
 <div>
 
-- **Maquettes Figma** + prototypes HTML ; charte, deux thèmes (Catppuccin / Soft Paper).
-- **Responsive** : versions Web (bureau) **et Web mobile** (points de rupture en `rem`).
-- **Accessibilité RGAA / WCAG AA** : structure sémantique, *skip link*, contrastes
-  calculés (min. 4,73:1), police **Atkinson Hyperlegible**.
+- <strong>Maquette</strong> 
+    - Wireframes
+    - Mockups 
+    - Prototype
+- Charte :
+    - Thème <code>Catppuccin</code>
+- <strong>Responsive</strong> : versions <strong>mobile</strong> et <strong>desktop</strong> :
+    - Media Queries
+    - points de rupture en <code>rem</code>.
+- <strong>Accessibilité RGAA / WCAG AA</strong> : 
+    - tags sémantiques (structure, SEO, lecteur écran), 
+    - RGAA:
+        - <em>skip link</em>,
+    - contrastes calculés (min. 4,73:1), 
+    - Police <strong>Atkinson Hyperlegible</strong>.
 
 </div>
 
-<img src="/images/mockup-mobile.png" class="h-90 rounded shadow" />
+<img src="/images/mockups/mockup-mobile.png" class="h-90 rounded shadow" />
 
 </div>
 
 <!--
-(~2 min) Montrer la version mobile. Insister sur l'accessibilité « par construction » et les
-contrastes mesurés. C'est CP2 (maquetter) : Web ET Web mobile.
--->
+(~2 min) 
 
+Montrer la version mobile. 
+- Accessibilité prise en compte dès le début
+Contrastes mesurés. 
+
+--></p>
 <hr />
 <h1 id="environnement-technique-cp1">Environnement technique <small>(CP1)</small><a class="headerlink" href="#environnement-technique-cp1" title="Permanent link"></a></h1>
 <ul>
@@ -1578,67 +1644,79 @@ contrastes mesurés. C'est CP2 (maquetter) : Web ET Web mobile.
 <li><strong>PostgreSQL 17</strong> + <strong>Liquibase</strong>.</li>
 <li><strong>Docker</strong> et <strong>Docker Compose</strong> (Postgres, Mongo, Mailpit)</li>
 <li><strong>Git</strong>: Gestion de l&rsquo;historique du code source</li>
-<li><strong>CI</strong>:  GitHub Actions.</li>
+<li><strong>CI</strong>:  GitHub Actions.
+
+
+&lt;!&ndash;
+(~2 min) 
+
+Balayer la stack:</li>
+<li><strong>Java</strong> langage de <strong>Programmation Orientée Objet</strong> (<em>POO</em>)</li>
+<li><strong>Maven</strong>: outil qui:<ul>
+<li>gére les dépéndances (installation, mise à jour, résoluition de conflits, dépendances transitives)</li>
 </ul>
-<!--
-(~2 min)
-
-Balayer la stack:
-- **Java** langage de **Programmation Orientée Objet** (*POO*)
-- **Maven**: outil qui:
-    - gére les dépéndances (installation, mise à jour, résoluition de conflits, dépendances transitives)
-- **Spring Boot** contient une galaxie de frameworks j'ai utilisés pour:
-  - le MVC
-- **Spring Security**: framework de sécurité qui gère :
-    - l'**authentification** via le **formulaire de connexion** 
-    - le **controle d'accès** basé sur les **roles** 
-- **Thymeleaf**: moteur templates utilisé pour le rendu coté serveur
--->
-
+</li>
+<li><strong>Spring Boot</strong> contient une galaxie de frameworks j&rsquo;ai utilisés pour:</li>
+<li>le MVC</li>
+<li><strong>Spring Security</strong>: framework de sécurité qui gère :<ul>
+<li>l&rsquo;<strong>authentification</strong> via le <strong>formulaire de connexion</strong> </li>
+<li>le <strong>controle d&rsquo;accès</strong> basé sur les <strong>roles</strong> </li>
+</ul>
+</li>
+<li><strong>Thymeleaf</strong>: moteur templates utilisé pour le rendu coté serveur
+&ndash;&gt;</li>
+</ul>
 <hr />
 <h1 id="differences-entre-sql-et-nosql">Différences entre SQL et NoSQL<a class="headerlink" href="#differences-entre-sql-et-nosql" title="Permanent link"></a></h1>
 <p>TODO</p>
 <hr />
-<h2 id="layout-section_4">layout: section<a class="headerlink" href="#layout-section_4" title="Permanent link"></a></h2>
+<h2 id="layout-section_3">layout: section<a class="headerlink" href="#layout-section_3" title="Permanent link"></a></h2>
 <h1 id="developpement">Développement<a class="headerlink" href="#developpement" title="Permanent link"></a></h1>
 <hr />
 <h1 id="architecture-en-couches">Architecture en couches<a class="headerlink" href="#architecture-en-couches" title="Permanent link"></a></h1>
-<p>MVC (Controller Model View)</p>
-<ul>
-<li><strong><code>Controller</code></strong>  reçoit les requêtes HTTP entrantes et dispatche leur traitement et renvoie la réponse<ul>
-<li><strong><code>Service</code></strong> applique les règles métier d&rsquo;une entité. <ul>
-<li><strong><code>Repository</code></strong> fait les interactions avec la base de données pour une entité.</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>```mermaid { scale: 0.6 }
+<p>MVC (Controller Model View)
+
+- <strong><code>Controller</code></strong>  reçoit les requêtes HTTP entrantes et dispatche leur traitement et renvoie la réponse
+    - <strong><code>Service</code></strong> applique les règles métier d&rsquo;une entité. 
+        - <strong><code>Repository</code></strong> fait les interactions avec la base de données pour une entité.
+
+<code>mermaid { scale: 0.6 }
 flowchart LR
-    browser@{shape: curv-trap, label: &ldquo;Navigateur Web&rdquo;}
+    browser@{shape: curv-trap, label: "Navigateur Web"}
     controller[Contrôleur]
-    service[&ldquo;Service<br/>règles métier&rdquo;]
-    repository[&ldquo;Repository<br/>(Spring Data JPA)&rdquo;]
-    db[&ldquo;Base de données
-        (PostgreSQL)&rdquo;]
+    service["Service&lt;br/&gt;règles métier"]
+    repository["Repository&lt;br/&gt;(Spring Data JPA)"]
+    db["Base de données
+        (PostgreSQL)"]
     thymeleaf[Thymeleaf]
-    views@{ shape: docs, label: &ldquo;Templates de Vue&rdquo; }
-    view@{  shape: doc,  label: &ldquo;&lsquo;Template de Vue&rdquo; }</p>
-<pre><code>browser     --&gt;|HTTP| controller
-controller  --&gt; service
-service     --&gt; repository
-repository  --&gt; db
-db          -.-&gt; repository
-repository  -.-&gt; service
-service     -.-&gt; controller
-controller  --&gt;|nom de template de vue| thymeleaf
-thymeleaf   --&gt;|cherche| views
-views       -.-&gt; view
-view        -.-&gt;|template de vue| thymeleaf
-thymeleaf   --&gt;|Renseigne la vue| thymeleaf
-thymeleaf   -.-&gt; |"HTML (vue remplie)"| browser
-</code></pre>
-<p>```</p>
+    views@{ shape: docs, label: "Templates de Vue" }
+    view@{  shape: doc,  label: "'Template de Vue" }
+
+    browser     --&gt;|HTTP| controller
+    controller  --&gt; service
+    service     --&gt; repository
+    repository  --&gt; db
+    db          -.-&gt; repository
+    repository  -.-&gt; service
+    service     -.-&gt; controller
+    controller  --&gt;|nom de template de vue| thymeleaf
+    thymeleaf   --&gt;|cherche| views
+    views       -.-&gt; view
+    view        -.-&gt;|template de vue| thymeleaf
+    thymeleaf   --&gt;|Renseigne la vue| thymeleaf
+    thymeleaf   -.-&gt; |"HTML (vue remplie)"| browser</code></p>
+<hr />
+<h2 id="layout-section_4">layout: section<a class="headerlink" href="#layout-section_4" title="Permanent link"></a></h2>
+<h1 id="demo">Démo<a class="headerlink" href="#demo" title="Permanent link"></a></h1>
+<!--
+- application Web **responsive** et **accessible**, 
+    - **rendu côté serveur** avec **Thymeleaf**,
+    - codée:
+      - coté **serveur**: en **Java** et **Spring Boot**
+      - coté **client**: en **HTML, CSS, JS**.
+
+-->
+
 <hr />
 <h1 id="deux-fonctionnalites-crud">Deux fonctionnalités CRUD<a class="headerlink" href="#deux-fonctionnalites-crud" title="Permanent link"></a></h1>
 <ul>
@@ -1655,41 +1733,43 @@ thymeleaf   -.-&gt; |"HTML (vue remplie)"| browser
 <li><strong>Erreurs HTTP</strong> explicites :<ul>
 <li><code>403</code>: Pas authentifié ou authorisation insuffisante</li>
 <li><code>404</code>: On ne le présente plus</li>
-<li><code>409</code>: conflit dans les paramètres de la requête
-
-&lt;!&ndash;
+<li><code>409</code>: conflit dans les paramètres de la requête</li>
+</ul>
+</li>
+</ul>
+<!--
 (~1 min)
-</li>
-</ul>
-</li>
-<li>Voici <strong>2 features</strong> que je vais détailler par la suite.</li>
-<li><strong>Erreur <code>403</code></strong>: Si le login échoue ne <strong>jamais</strong> préciser <strong>la cause</strong> (login n&rsquo;existe pas ou mot de passe est incorrect) mais renvoyer <code>403</code>.
-&ndash;&gt;</li>
-</ul>
+
+- Voici **2 features** que je vais détailler par la suite.
+- **Erreur `403`**: Si le login échoue ne **jamais** préciser **la cause** (login n'existe pas ou mot de passe est incorrect) mais renvoyer `403`.
+-->
+
 <hr />
 <h1 id="feature-1-inscription-dun-utilisateurcp4-cp7">Feature 1 — Inscription d&rsquo;un utilisateur<small>(CP4, CP7)</small><a class="headerlink" href="#feature-1-inscription-dun-utilisateurcp4-cp7" title="Permanent link"></a></h1>
-<p><div class="grid grid-cols-2 gap-4 items-center">
+<div class="grid grid-cols-2 gap-4 items-center">
 
 <div>
 
-- Formulaire <strong>validé</strong> (Bean Validation), <strong>erreurs accessibles</strong>.
-- <strong>Unicité</strong> username/e-mail ; motif <strong>Post-Redirect-Get</strong>.
+- Formulaire **validé** (Bean Validation), **erreurs accessibles**.
+- **Unicité** username/e-mail ; motif **Post-Redirect-Get**.
 
-<code>java
-public User register(RegisterForm form) {
-    if (users.existsByUsername(form.username())) {
-        throw new DuplicateUsernameException();
-    }
-    if (users.existsByEmail(form.email())) {
-        throw new DuplicateEmailException();
-    }
-    // hachage BCrypt, jamais de mot de passe en clair
-    user.setPassword(encoder.encode(form.password()));
-    return users.saveAndFlush(user);
-}</code></p>
+<div class="highlight"><pre><span class="kd">public</span> <span class="n">User</span> <span class="nf">register</span><span class="o">(</span><span class="n">RegisterForm</span> <span class="n">form</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">users</span><span class="o">.</span><span class="na">existsByUsername</span><span class="o">(</span><span class="n">form</span><span class="o">.</span><span class="na">username</span><span class="o">()))</span> <span class="o">{</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="n">DuplicateUsernameException</span><span class="o">();</span>
+    <span class="o">}</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">users</span><span class="o">.</span><span class="na">existsByEmail</span><span class="o">(</span><span class="n">form</span><span class="o">.</span><span class="na">email</span><span class="o">()))</span> <span class="o">{</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="n">DuplicateEmailException</span><span class="o">();</span>
+    <span class="o">}</span>
+    <span class="c1">// hachage BCrypt, jamais de mot de passe en clair</span>
+    <span class="n">user</span><span class="o">.</span><span class="na">setPassword</span><span class="o">(</span><span class="n">encoder</span><span class="o">.</span><span class="na">encode</span><span class="o">(</span><span class="n">form</span><span class="o">.</span><span class="na">password</span><span class="o">()));</span>
+    <span class="k">return</span> <span class="n">users</span><span class="o">.</span><span class="na">saveAndFlush</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
+<span class="o">}</span>
+</pre></div>
+
 </div>
 
-<p><img src="/images/mockup-register.png" class="h-80 rounded shadow" /></p>
+<img src="/images/mockups/mockup-register.png" class="h-80 rounded shadow" />
+
 </div>
 
 <!--
@@ -1803,7 +1883,7 @@ CP7.
 
 &lt;/div&gt;
 
-&lt;img src=&quot;/images/mockup-catalog.png&quot; class=&quot;rounded shadow&quot; /&gt;
+&lt;img src=&quot;/images/mockups/mockup-catalog.png&quot; class=&quot;rounded shadow&quot; /&gt;
 
 &lt;/div&gt;
 

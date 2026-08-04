@@ -82,21 +82,37 @@ Me présenter.
 
 ## Authentification et Autorisations
 
-- Pas de restriction pour créer un compte étudiant
 - **Authentification obligatoire**
 - **Autorisations**  (`RBAC`) :  
   > Une fois **authentifié**, un utilisateur n'a accès qu'aux fonctionnalités que lui accorde son rôle. 
+
+<!--
+**Pages publiques** (pas d'authentification) : 
+- Page d'accueil,
+- RGPD,
+- Reset mot de passe.
+-->
 
 ---
 
 ## Etudiant
 
 
-Rôle **`STUDENT`** (**par défaut** à la création d'un compte) :
+Rôle **`STUDENT`**
 
+- création de son compte :
+    - rôle **par défaut**,
+    - **aucune restriction**,
 - consultation du **catalogue** des cours, 
 - inscription à des **cours**, 
 - lecture des **leçons**.
+
+<!--
+Pourquoi aucune restriction à l'enregistrement d'un étudiant?
+- Pas d'étape bloquante pour faciliter l'adhésion
+- évolution possible pour la v2:
+    - Ajout d'une approbation préalable par le formateur ou l'admin
+-->
 
 ---
 
@@ -104,7 +120,7 @@ Rôle **`STUDENT`** (**par défaut** à la création d'un compte) :
 
 Rôle **`INSTRUCTOR`** :
 
-- **création de contenu** (cours/leçons), 
+- **création de contenu** (cours et leçons), 
 - cycle de vie de **publication** des cours et leçons, 
 -  gestion des **inscriptions**.
 
@@ -118,22 +134,18 @@ Rôle **`ADMIN`**:
 - modération des contenus.
 
 
-
 ---
 layout: section
 ---
 
 # Conception
 
-<!--
-Cette section aborde:
+- Gestion de projet
+- Cahier des charges
+- Modèlisation des données
+- Maquettage et UX
+- Environnement de travail
 
-- **l'organisation du travail** (aujourd'hui en solo, donc pas encore de SCRUM)
-- le cahier des charges
-- la modélisation des données et la base qui les stockent
-- le maquettage et l'expérience utilisateur (UX)
-- l'environnement de travail
--->
 
 ---
 
@@ -173,6 +185,69 @@ C'est de la communication écrite (compétence transversale).
 
 ---
 
+# GitHub Project
+
+<img src="/images/github-project.png" />
+
+---
+
+# GitHub Issues
+
+<img src="/images/github-issues.png" />
+
+---
+
+# Branches Git
+
+```mermaid {scale: 0.8}
+gitGraph
+    commit
+    branch dev
+    checkout dev
+    branch feat/add-home-page
+    checkout feat/add-home-page
+    commit
+    commit
+    checkout dev
+    merge feat/add-home-page
+
+    branch feat/add-footer
+    commit
+    commit
+    checkout dev
+    merge feat/add-footer
+
+    checkout main
+    merge dev
+    commit type: HIGHLIGHT tag: "bug found"
+    checkout main
+    branch fix/htaccess
+    commit
+    checkout main
+    merge fix/htaccess
+    checkout dev
+    merge fix/htaccess
+```
+
+--- 
+
+# Conventional Commits
+
+<br /><br /><br /> 
+
+- **`fix(frontend):`** `Collapse the mobile TOC when a section is picked`
+- **`feat(frontend):`** `Highlight the current section in the lesson TOC`
+- **`docs(adr):`** `Record the hybrid lesson TOC decision`
+- **`docs(plan):`** **`Add the lesson table of contents plan`**
+
+---
+
+# Pull Requests
+
+<img src="/images/github-pull-requests.png" />
+
+--- 
+
 # Cahier des charges
 
 ## Objectifs fonctionnels
@@ -181,24 +256,24 @@ C'est de la communication écrite (compétence transversale).
 - gérer et publier des cours,
 - administrer.
 
-## Objectifs non fonctionnel
+## Objectifs non fonctionnels
 
-- sécurité, 
-- accessibilité (*RGAA*),
-- responsive, 
-- tests, 
-- Intégration Continue (CI).
+- **sécurité**, 
+- **accessibilité** (*RGAA*),
+- interface **responsive**, 
+- **tests**, 
+- Intégration Continue (**CI**).
 
 ---
 
 # Personas
 
-- **Léa** (étudiante)
+- **`Lea`** (**étudiante**) :
     - s'inscrit et suit des cours, sur mobile comme sur ordinateur.
-- **Marc** (formateur)
+- **`Marc`** (**formateur**) :
     - rédige les leçons de cours qu'il conçoit en Markdown, 
     - gère la publication de ses cours,
-- **Awa** (admin):
+- **`Awa`** (**admin**) :
     - gère les comptes,
     - modère en toute sécurité.
 
@@ -208,11 +283,18 @@ Dérouler les besoins par persona.
 Relier aux besoins non fonctionnels.
 -->
 
+
 ---
 layout: section
 ---
 
 # Base de données  <small>(CP5)</small>
+
+<br />
+
+## Modélisation des données (diagrammes Merise)
+
+
 
 ---
 layout: two-cols
@@ -235,7 +317,7 @@ Modèle Conceptuel de Données
 
 ::right::
 
-  <img src="/images/mcd.png" class="max-h-[85%] max-w-[85%]" alt="MCD" />
+<img src="/images/mcd.png" class="max-h-[85%] max-w-[85%]" alt="MCD" />
 
 
 
@@ -280,8 +362,9 @@ Modèle Logique de Données
 (~1,5 min)
 
 9 entités : utilisateurs, rôles, cours, leçons, inscriptions, jetons, audit. 
-- Relationnel mais pas spécifique à une base de données.
-- PAS encore les **types** de colonnes, contraintes... 
+- Un peu de **Relationnel mais pas trop** :
+    - **PAS spécifique à une base** de données.
+    - PAS encore les **types** de colonnes, les contraintes... 
 -->
 
 
@@ -291,22 +374,21 @@ Modèle Logique de Données
 
 Modèle Physique de Données
 
-- Syntaxe spécifique au moteur de base de données relationelle (*SGBDR*)
-- **PostgreSQL** (ADR-06),
-- **Clés primaires**  (choix d'architecture ADR-03) 
-    - **`UUID`** pour la table **`users`**
-        - anti-[IDOR](https://en.wikipedia.org/wiki/Insecure_direct_object_reference)
-        - dans les 10 principales vulnérabilités **OWASP** 
-    - **`BIGINT`** pour les autres tables
+- **Syntaxe spécifique au moteur** de base de données relationelle choisi (*SGBDR*)
+- **PostgreSQL** (ADR-07),
+    - **Clés primaires**  (ADR-03) :
+        - **`UUID`** pour la table **`users`**
+            - anti-[IDOR](https://en.wikipedia.org/wiki/Insecure_direct_object_reference)
+              (top-10 des vulnérabilités **OWASP**)
+        - **`BIGINT`** pour les autres tables
     - **Clé primaire composite** pour les 2 tables de jonction 
-
-
+- Diagramme MPD à suivre (ou équivalent [Markdown](https://github.com/ebouchut/learn-dev/blob/dev/docs/database/merise/mpd/README.md) plus digérable ;-)
 
 <!--
-(~1,5 min) 
+(~3 min) 
 
-- Pourquoi PostgreSQL ? ([ADR-0007](https://github.com/ebouchut/learn-dev/blob/dev/docs/adr/0007-use-postgresql-over-mysql.md)), 
-- Migrations BDD:
+- **Pourquoi PostgreSQL ?** ([ADR-0007](https://github.com/ebouchut/learn-dev/blob/dev/docs/adr/0007-use-postgresql-over-mysql.md)), 
+- **Migrations BDD**:
     - *Liquibase* ([ADR-0005](https://github.com/ebouchut/learn-dev/blob/dev/docs/adr/0005-handwrite-liquibase-migrations-over-mcd-ddl.md)), 
 - `UUID` vs `BIGINT` ([ADR-0003](https://github.com/ebouchut/learn-dev/blob/dev/docs/adr/0003-uuid-pk-for-users-bigint-elsewhere.md))
     - anti-IDOR
@@ -325,27 +407,63 @@ layout: full
 <img src="/images/mpd.svg" class="max-h-[100%] max-w-[100%]" alt="MPD" />
 
 ---
+layout: section
+---
 
 # Maquettage et accessibilité <small>(CP2)</small>
 
-<div class="grid grid-cols-[1fr_auto] gap-6 items-center">
+## Wireframes, Mockups, Prototype
+## Charte graphique
+## Accessibilité
 
-<div>
+---
+layout: two-cols-header
+---
 
-- **Maquettes Figma** + prototypes HTML ; charte, deux thèmes (Catppuccin / Soft Paper).
-- **Responsive** : versions Web (bureau) **et Web mobile** (points de rupture en `rem`).
-- **Accessibilité RGAA / WCAG AA** : structure sémantique, *skip link*, contrastes
-  calculés (min. 4,73:1), police **Atkinson Hyperlegible**.
+# Wireframes
 
-</div>
+::left::
 
-<img src="/images/mockup-mobile.png" class="h-90 rounded shadow" />
+## Mobile
 
-</div>
+<img src="/images/wireframes/wireframe-home-mobile.svg" class="h-90 rounded shadow" />
+
+::right::
+
+## Desktop
+
+<img src="/images/wireframes/wireframe-home-desktop.svg" class="rounded shadow" />
+
+
+---
+
+# Charte graphique
+
+- Thème `Catppuccin`
+- Polices lisibles : 
+  - `Atkinson Hyperlegible` (corps de texte), 
+  - `Sora` (titres) sans-serif
+  - `JetBrains Mono` (code)
+
+- **Responsive** : 
+    - versions **mobile** et **desktop**
+    - Media Queries avec points de rupture en `rem`.
+- **Accessibilité (RGAA / WCAG `AA`)** : 
+    - tags sémantiques (structure, SEO, lecteur écran), 
+    - RGAA :
+        - *skip link*,
+    - **contrastes** calculés (min. 4,73:1), 
+
 
 <!--
-(~2 min) Montrer la version mobile. Insister sur l'accessibilité « par construction » et les
-contrastes mesurés. C'est CP2 (maquetter) : Web ET Web mobile.
+(~2 min) 
+
+- Mobile first
+
+- **Accessibilité** prise en compte dès la conception
+- **Contrastes** mesurés (`AA`). 
+- Polices de caractères **Google** téléchargées **en local** pour éviter les problèmes **GDPR** (pixel envoyés à Google):
+- `Sora`: geometric sans-serif on Google Fonts
 -->
 
 ---
@@ -443,8 +561,14 @@ layout: section
     - codée:
       - coté **serveur**: en **Java** et **Spring Boot**
       - coté **client**: en **HTML, CSS, JS**.
-
 -->
+
+---
+layout: iframe
+url: http://localhost:8080/
+---
+
+
 
 ---
 
@@ -460,15 +584,19 @@ layout: section
       - cycle de vie, 
       - autorisations.
 - **Erreurs HTTP** explicites :
-    - `403`: Pas authentifié ou authorisation insuffisante
-    - `404`: On ne le présente plus
-    - `409`: conflit dans les paramètres de la requête
-
+    - **Pas** de `401` : Authentification échouée
+    - `403` : Authorisation insuffisante
+    - `404` : On ne le présente plus
+    - `409` : conflit dans les paramètres de la requête
+    - `500` : erreur du serveur
 <!--
 (~1 min)
 
-- Voici **2 features** que je vais détailler par la suite.
-- **Erreur `403`**: Si le login échoue ne **jamais** préciser **la cause** (login n'existe pas ou mot de passe est incorrect) mais renvoyer `403`.
+- Voici ls **2 features** que je vais détailler ensuite.
+- Si authentification échoue  *Spring Security* (`FormLogin`) :
+    - ne renvoie PAS `401` 
+    - ne donne PAS la cause (login indexistant ou mot de passe incorrect) 
+    - redirige (`302`) sur la page de login
 -->
 
 ---
@@ -498,7 +626,7 @@ public User register(RegisterForm form) {
 
 </div>
 
-<img src="/images/mockup-register.png" class="h-80 rounded shadow" />
+<img src="/images/mockups/mockup-register.png" class="h-80 rounded shadow" />
 
 </div>
 
@@ -594,7 +722,7 @@ CP7.
 
 </div>
 
-<img src="/images/mockup-catalog.png" class="rounded shadow" />
+<img src="/images/mockups/mockup-catalog.png" class="rounded shadow" />
 
 </div>
 
