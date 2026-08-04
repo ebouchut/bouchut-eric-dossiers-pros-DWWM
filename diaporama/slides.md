@@ -73,40 +73,51 @@ Me présenter.
 
 # Vue d'ensemble de learn-dev 
 
-<div class="grid grid-cols-2 gap-6 items-center">
+## Rôles
 
-<div>
+- **étudiant** (`STUDENT`)
+- **formateur** (`INSTRUCTOR`)
+- **administrateur** (`ADMIN`)
 
-- **Trois rôles** : 
-    - étudiant (`STUDENT`), 
-    - formateur (`INSTRUCTOR`), 
-    - administrateur (`ADMIN`).  
 
-- **Étudiant** : catalogue, inscription à des cours, lecture des leçons.
-- **Formateur** : création de cours/leçons, cycle de vie de publication, gestion des inscriptions.
-- **Administrateur** : gestion des comptes, modération des contenus.
+## Authentification et Autorisations
 
-</div>
-
-<img src="/images/mockup-home.png" class="rounded shadow" />
-
-</div>
-
-<!--
-(~1 min)
-
-- Décrire les 3 rôles et le parcours nominal. 
-- Préciser : application Web rendue côté
-serveur (Spring Boot + Thymeleaf), responsive et accessible.
--->
+- Pas de restriction pour créer un compte étudiant
+- **Authentification obligatoire**
+- **Autorisations**  (`RBAC`) :  
+  > Une fois **authentifié**, un utilisateur n'a accès qu'aux fonctionnalités que lui accorde son rôle. 
 
 ---
-layout: image
-image: /images/learn-dev-home.png
-backgroundSize: contain
+
+## Etudiant
+
+
+Rôle **`STUDENT`** (**par défaut** à la création d'un compte) :
+
+- consultation du **catalogue** des cours, 
+- inscription à des **cours**, 
+- lecture des **leçons**.
+
 ---
 
-# Démo
+## Formateur
+
+Rôle **`INSTRUCTOR`** :
+
+- **création de contenu** (cours/leçons), 
+- cycle de vie de **publication** des cours et leçons, 
+-  gestion des **inscriptions**.
+
+---
+
+## Administrateur 
+
+Rôle **`ADMIN`**:  
+       
+- gestion des comptes, 
+- modération des contenus.
+
+
 
 ---
 layout: section
@@ -249,14 +260,14 @@ layout: two-cols
 Modèle Logique de Données
 
 
-- **Structure relationnelle**
+- **Indépendant de la base de données**
+- **Structure relationnelle** partielle
     - **tables**
     - **tables de jointure** 
         - modélisent la cardinalité `N,N`
     - **clé étrangères** (Foreign Keys)
         - précédées par `#`
         - modélisent les cardinalités `1,1` et `1,N`
-- **Indépendant de la base de données**
 
 
 ::right::
@@ -280,27 +291,36 @@ Modèle Logique de Données
 
 Modèle Physique de Données
 
-- Syntaxe spécifique à la base de données relationelle **PostgreSQL**,
-- **Clé primaire**
-    - **`UUID`** pour la table `users` (anti-IDOR) 
-    - **`BIGINT`** pour toute les autres
+- Syntaxe spécifique au moteur de base de données relationelle (*SGBDR*)
+- **PostgreSQL** (ADR-06),
+- **Clés primaires**  (choix d'architecture ADR-03) 
+    - **`UUID`** pour la table **`users`**
+        - anti-[IDOR](https://en.wikipedia.org/wiki/Insecure_direct_object_reference)
+        - dans les 10 principales vulnérabilités **OWASP** 
+    - **`BIGINT`** pour les autres tables
     - **Clé primaire composite** pour les 2 tables de jonction 
+
 
 
 <!--
 (~1,5 min) 
 
-- Pourquoi PostgreSQL ? ([ADR-0007]()), 
-- Liquibase ([ADR-0005]()), 
-- UUID ([ADR-0003]()).
-- Contrôle anti-dérive de schéma fait par la CI et au démarrage de l'application.
+- Pourquoi PostgreSQL ? ([ADR-0007](https://github.com/ebouchut/learn-dev/blob/dev/docs/adr/0007-use-postgresql-over-mysql.md)), 
+- Migrations BDD:
+    - *Liquibase* ([ADR-0005](https://github.com/ebouchut/learn-dev/blob/dev/docs/adr/0005-handwrite-liquibase-migrations-over-mcd-ddl.md)), 
+- `UUID` vs `BIGINT` ([ADR-0003](https://github.com/ebouchut/learn-dev/blob/dev/docs/adr/0003-uuid-pk-for-users-bigint-elsewhere.md))
+    - anti-IDOR
+    - random sur des grains de sables alignés entre 2 galaxies.
+- Contrôle **anti-dérive du schéma** fait :
+    - au **démarrage de l'application**,
+    - par la **CI**.
 -->
 
 ---
 layout: full
 ---
 
-# Modèle Physique de Données
+# Diagramme MPD
 
 <img src="/images/mpd.svg" class="max-h-[100%] max-w-[100%]" alt="MPD" />
 
@@ -361,6 +381,13 @@ Balayer la stack:
 -->
 
 ---
+
+# Différences entre SQL et NoSQL
+
+TODO
+
+
+---
 layout: section
 ---
 
@@ -404,6 +431,23 @@ flowchart LR
 ```
 
 ---
+layout: section
+---
+
+# Démo
+
+
+<!--
+- application Web **responsive** et **accessible**, 
+    - **rendu côté serveur** avec **Thymeleaf**,
+    - codée:
+      - coté **serveur**: en **Java** et **Spring Boot**
+      - coté **client**: en **HTML, CSS, JS**.
+
+-->
+
+---
+
 
 # Deux fonctionnalités CRUD
 
@@ -429,7 +473,7 @@ flowchart LR
 
 ---
 
-# Feature 1 — Inscription <small>(CP4, CP7)</small>
+# Feature 1 — Inscription d'un utilisateur<small>(CP4, CP7)</small>
 
 <div class="grid grid-cols-2 gap-4 items-center">
 
@@ -459,8 +503,16 @@ public User register(RegisterForm form) {
 </div>
 
 <!--
-(~2 min) Démo/écran de l'inscription. Montrer la validation et les messages d'erreur reliés
-au champ (aria). Le code : unicité + hachage BCrypt, jamais de mot de passe en clair.
+(~2 min) 
+
+Démo
+- formulaire d'inscription utilisateur. 
+    - Montrer la validation et les messages d'erreur reliés au champ (`aria`). 
+    - Le code : 
+        - **unicité** du **`username`**
+        - **hachage** **mot de passe**: **BCrypt**
+         (jamais en clair).
+
 CP4 (dynamique) + CP7 (composant métier).
 -->
 
@@ -483,12 +535,29 @@ CP4 (dynamique) + CP7 (composant métier).
 -->
 
 ---
+layout: two-cols-header
+---
 
 # Feature 2 — Cours et leçons <small>(CP7)</small>
 
-- **Autorisations** : le cours d'un autre formateur → **403** ; contenu invisible → **404** ;
-  transition invalide → **409**.
-- Réordonnancement des leçons, gestion des inscrits, **journal d'audit**.
+::left::
+
+## Espace formateur
+    
+- création, mise à jour, 
+- publication,
+- archivage/restauration,
+- réordonnancement des leçons,
+- gestion des inscrits
+
+- **Autorisations** (erreurs *HTTP*): 
+    - cours d'un autre formateur => **`403`**,
+    - contenu invisible => **`404`**,
+    - transition invalide => **`409`**.
+
+::right::
+
+## Cycle de vie
 
 ```mermaid { scale: 0.9 }
 stateDiagram-v2
@@ -501,9 +570,13 @@ stateDiagram-v2
 ```
 
 <!--
-(~2,5 min) Montrer l'espace formateur : création, publication, réordonnancement. Insister
-sur les règles métier (cycle de vie ci-dessus, appliqué aux cours ET aux leçons) et la
-gestion fine des erreurs HTTP. CP7.
+(~2,5 min)
+
+
+- **Règles métier** 
+- **Erreurs HTTP**: gestion fine. 
+
+CP7.
 -->
 
 ---
@@ -689,6 +762,7 @@ notamment le volet NoSQL.
 - **Dépôt** : [github.com/ebouchut/learn-dev](https://github.com/ebouchut/learn-dev)
 - **Projet** : [github.com/users/ebouchut/projects/7](https://github.com/users/ebouchut/projects/7)
 - **Décisions d'architecture**: [ADRs](https://github.com/ebouchut/learn-dev/blob/dev/docs/adr/README.md#index)
+- Palette/Thème: 
 
 
 ---

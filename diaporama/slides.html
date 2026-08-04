@@ -1301,18 +1301,31 @@ Me présenter.
 
 <hr />
 <h1 id="vue-densemble-de-learn-dev">Vue d&rsquo;ensemble de learn-dev<a class="headerlink" href="#vue-densemble-de-learn-dev" title="Permanent link"></a></h1>
+<ul>
+<li><strong>Trois rôles</strong> : <ul>
+<li><strong>étudiant</strong> (<code>STUDENT</code>), rôle par défaut</li>
+<li><strong>formateur</strong> (<code>INSTRUCTOR</code>)</li>
+<li><strong>administrateur</strong> (<code>ADMIN</code>)</li>
+</ul>
+</li>
+</ul>
+<p>`&mdash;</p>
 <div class="grid grid-cols-2 gap-6 items-center">
 
 <div>
 
-- **Trois rôles** : 
-    - étudiant (`STUDENT`), 
-    - formateur (`INSTRUCTOR`), 
-    - administrateur (`ADMIN`).  
 
-- **Étudiant** : catalogue, inscription à des cours, lecture des leçons.
-- **Formateur** : création de cours/leçons, cycle de vie de publication, gestion des inscriptions.
-- **Administrateur** : gestion des comptes, modération des contenus.
+    - **`STUDENT`** (étudiant) :
+        - consultation du **catalogue**, 
+        - inscription à des **cours**, 
+            - lecture des **leçons**.
+    - **`INSTRUCTOR`** (formateur) :
+        - **création de contenu** (cours/leçons), 
+        - cycle de vie de **publication**, 
+        - gestion des **inscriptions**.
+    - **administrateur** (`ADMIN`) :  
+        - gestion des comptes, 
+        - modération des contenus.
 
 </div>
 
@@ -1324,18 +1337,22 @@ Me présenter.
 (~1 min)
 
 - Décrire les 3 rôles et le parcours nominal. 
-- Préciser : application Web rendue côté
-serveur (Spring Boot + Thymeleaf), responsive et accessible.
 -->
 
 <hr />
-<p>layout: image
-image: /images/learn-dev-home.png
-backgroundSize: contain</p>
-<hr />
-<h1 id="demo">Démo<a class="headerlink" href="#demo" title="Permanent link"></a></h1>
-<hr />
 <h2 id="layout-section_1">layout: section<a class="headerlink" href="#layout-section_1" title="Permanent link"></a></h2>
+<h1 id="demo">Démo<a class="headerlink" href="#demo" title="Permanent link"></a></h1>
+<!--
+- application Web **responsive** et **accessible**, 
+    - rendu côté serveur avec *Thymeleaf*,
+    - codée:
+      - coté **serveur**: en Java + Spring Boot coté **serveur**
+      - coté **client**: en HTML, CSS, JS.
+
+-->
+
+<hr />
+<h2 id="layout-section_2">layout: section<a class="headerlink" href="#layout-section_2" title="Permanent link"></a></h2>
 <h1 id="conception">Conception<a class="headerlink" href="#conception" title="Permanent link"></a></h1>
 <!--
 Cette section aborde:
@@ -1423,7 +1440,7 @@ Relier aux besoins non fonctionnels.
 -->
 
 <hr />
-<h2 id="layout-section_2">layout: section<a class="headerlink" href="#layout-section_2" title="Permanent link"></a></h2>
+<h2 id="layout-section_3">layout: section<a class="headerlink" href="#layout-section_3" title="Permanent link"></a></h2>
 <h1 id="base-de-donnees-cp5">Base de données  <small>(CP5)</small><a class="headerlink" href="#base-de-donnees-cp5" title="Permanent link"></a></h1>
 <hr />
 <h2 id="layout-two-cols">layout: two-cols<a class="headerlink" href="#layout-two-cols" title="Permanent link"></a></h2>
@@ -1464,7 +1481,8 @@ Relier aux besoins non fonctionnels.
 <h1 id="base-de-donnees-mld">Base de données — MLD<a class="headerlink" href="#base-de-donnees-mld" title="Permanent link"></a></h1>
 <p>Modèle Logique de Données</p>
 <ul>
-<li><strong>Structure relationnelle</strong><ul>
+<li><strong>Indépendant de la base de données</strong></li>
+<li><strong>Structure relationnelle</strong> partielle<ul>
 <li><strong>tables</strong></li>
 <li><strong>tables de jointure</strong> <ul>
 <li>modélisent la cardinalité <code>N,N</code></li>
@@ -1477,7 +1495,6 @@ Relier aux besoins non fonctionnels.
 </li>
 </ul>
 </li>
-<li><strong>Indépendant de la base de données</strong></li>
 </ul>
 <p>::right::</p>
 <p><Transform :scale="1.2" origin="top">
@@ -1495,10 +1512,15 @@ Relier aux besoins non fonctionnels.
 <h1 id="base-de-donnees-mpd">Base de données — MPD<a class="headerlink" href="#base-de-donnees-mpd" title="Permanent link"></a></h1>
 <p>Modèle Physique de Données</p>
 <ul>
-<li>Syntaxe spécifique à la base de données relationelle <strong>PostgreSQL</strong>,</li>
-<li><strong>Clé primaire</strong><ul>
-<li><strong><code>UUID</code></strong> pour la table <code>users</code> (anti-IDOR) </li>
-<li><strong><code>BIGINT</code></strong> pour toute les autres</li>
+<li>Syntaxe spécifique au moteur de base de données relationelle (<em>SGBDR</em>)</li>
+<li><strong>PostgreSQL</strong> (ADR-06),</li>
+<li><strong>Clés primaires</strong>  (choix d&rsquo;architecture ADR-03) <ul>
+<li><strong><code>UUID</code></strong> pour la table <strong><code>users</code></strong><ul>
+<li>anti-<a href="https://en.wikipedia.org/wiki/Insecure_direct_object_reference">IDOR</a></li>
+<li>dans les 10 principales vulnérabilités <strong>OWASP</strong> </li>
+</ul>
+</li>
+<li><strong><code>BIGINT</code></strong> pour les autres tables</li>
 <li><strong>Clé primaire composite</strong> pour les 2 tables de jonction </li>
 </ul>
 </li>
@@ -1506,15 +1528,20 @@ Relier aux besoins non fonctionnels.
 <!--
 (~1,5 min)
 
-- Pourquoi PostgreSQL ? ([ADR-0007]()), 
-- Liquibase ([ADR-0005]()), 
-- UUID ([ADR-0003]()).
-- Contrôle anti-dérive de schéma fait par la CI et au démarrage de l'application.
+- Pourquoi PostgreSQL ? ([ADR-0007](https://github.com/ebouchut/learn-dev/blob/dev/docs/adr/0007-use-postgresql-over-mysql.md)), 
+- Migrations BDD:
+    - *Liquibase* ([ADR-0005](https://github.com/ebouchut/learn-dev/blob/dev/docs/adr/0005-handwrite-liquibase-migrations-over-mcd-ddl.md)), 
+- `UUID` vs `BIGINT` ([ADR-0003](https://github.com/ebouchut/learn-dev/blob/dev/docs/adr/0003-uuid-pk-for-users-bigint-elsewhere.md))
+    - anti-IDOR
+    - random sur des grains de sables alignés entre 2 galaxies.
+- Contrôle **anti-dérive du schéma** fait :
+    - au **démarrage de l'application**,
+    - par la **CI**.
 -->
 
 <hr />
 <h2 id="layout-full">layout: full<a class="headerlink" href="#layout-full" title="Permanent link"></a></h2>
-<h1 id="modele-physique-de-donnees">Modèle Physique de Données<a class="headerlink" href="#modele-physique-de-donnees" title="Permanent link"></a></h1>
+<h1 id="diagramme-mpd">Diagramme MPD<a class="headerlink" href="#diagramme-mpd" title="Permanent link"></a></h1>
 <p><img src="/images/mpd.svg" class="max-h-[100%] max-w-[100%]" alt="MPD" /></p>
 <hr />
 <h1 id="maquettage-et-accessibilite-cp2">Maquettage et accessibilité <small>(CP2)</small><a class="headerlink" href="#maquettage-et-accessibilite-cp2" title="Permanent link"></a></h1>
@@ -1569,7 +1596,10 @@ Balayer la stack:
 -->
 
 <hr />
-<h2 id="layout-section_3">layout: section<a class="headerlink" href="#layout-section_3" title="Permanent link"></a></h2>
+<h1 id="differences-entre-sql-et-nosql">Différences entre SQL et NoSQL<a class="headerlink" href="#differences-entre-sql-et-nosql" title="Permanent link"></a></h1>
+<p>TODO</p>
+<hr />
+<h2 id="layout-section_4">layout: section<a class="headerlink" href="#layout-section_4" title="Permanent link"></a></h2>
 <h1 id="developpement">Développement<a class="headerlink" href="#developpement" title="Permanent link"></a></h1>
 <hr />
 <h1 id="architecture-en-couches">Architecture en couches<a class="headerlink" href="#architecture-en-couches" title="Permanent link"></a></h1>
@@ -1637,7 +1667,7 @@ thymeleaf   -.-&gt; |"HTML (vue remplie)"| browser
 &ndash;&gt;</li>
 </ul>
 <hr />
-<h1 id="feature-1-inscription-cp4-cp7">Feature 1 — Inscription <small>(CP4, CP7)</small><a class="headerlink" href="#feature-1-inscription-cp4-cp7" title="Permanent link"></a></h1>
+<h1 id="feature-1-inscription-dun-utilisateurcp4-cp7">Feature 1 — Inscription d&rsquo;un utilisateur<small>(CP4, CP7)</small><a class="headerlink" href="#feature-1-inscription-dun-utilisateurcp4-cp7" title="Permanent link"></a></h1>
 <p><div class="grid grid-cols-2 gap-4 items-center">
 
 <div>
@@ -1663,8 +1693,16 @@ public User register(RegisterForm form) {
 </div>
 
 <!--
-(~2 min) Démo/écran de l'inscription. Montrer la validation et les messages d'erreur reliés
-au champ (aria). Le code : unicité + hachage BCrypt, jamais de mot de passe en clair.
+(~2 min)
+
+Démo
+- formulaire d'inscription utilisateur. 
+    - Montrer la validation et les messages d'erreur reliés au champ (`aria`). 
+    - Le code : 
+        - **unicité** du **`username`**
+        - **hachage** **mot de passe**: **BCrypt**
+         (jamais en clair).
+
 CP4 (dynamique) + CP7 (composant métier).
 -->
 
@@ -1709,12 +1747,29 @@ CP4 (dynamique) + CP7 (composant métier).
 -->
 
 <hr />
+<h2 id="layout-two-cols-header">layout: two-cols-header<a class="headerlink" href="#layout-two-cols-header" title="Permanent link"></a></h2>
 <h1 id="feature-2-cours-et-lecons-cp7">Feature 2 — Cours et leçons <small>(CP7)</small><a class="headerlink" href="#feature-2-cours-et-lecons-cp7" title="Permanent link"></a></h1>
+<p>::left::</p>
+<h2 id="espace-formateur">Espace formateur<a class="headerlink" href="#espace-formateur" title="Permanent link"></a></h2>
 <ul>
-<li><strong>Autorisations</strong> : le cours d&rsquo;un autre formateur → <strong>403</strong> ; contenu invisible → <strong>404</strong> ;
-  transition invalide → <strong>409</strong>.</li>
-<li>Réordonnancement des leçons, gestion des inscrits, <strong>journal d&rsquo;audit</strong>.</li>
+<li>création, mise à jour, </li>
+<li>publication,</li>
+<li>archivage/restauration,</li>
+<li>réordonnancement des leçons,</li>
+<li>
+<p>gestion des inscrits</p>
+</li>
+<li>
+<p><strong>Autorisations</strong> (erreurs <em>HTTP</em>): </p>
+<ul>
+<li>cours d&rsquo;un autre formateur =&gt; <strong><code>403</code></strong>,</li>
+<li>contenu invisible =&gt; <strong><code>404</code></strong>,</li>
+<li>transition invalide =&gt; <strong><code>409</code></strong>.</li>
 </ul>
+</li>
+</ul>
+<p>::right::</p>
+<h2 id="cycle-de-vie">Cycle de vie<a class="headerlink" href="#cycle-de-vie" title="Permanent link"></a></h2>
 <p>```mermaid { scale: 0.9 }
 stateDiagram-v2
     direction LR
@@ -1724,9 +1779,13 @@ stateDiagram-v2
     PUBLISHED &ndash;&gt; ARCHIVED : archiver
     ARCHIVED &ndash;&gt; DRAFT : restaurer
 <div class="highlight"><pre>&lt;!--
-(~2,5 min) Montrer l&#39;espace formateur : création, publication, réordonnancement. Insister
-sur les règles métier (cycle de vie ci-dessus, appliqué aux cours ET aux leçons) et la
-gestion fine des erreurs HTTP. CP7.
+(~2,5 min)
+
+
+- **Règles métier** 
+- **Erreurs HTTP**: gestion fine. 
+
+CP7.
 --&gt;
 
 ---
@@ -1837,7 +1896,7 @@ La CI verrouille la qualité à chaque push.
 -->
 
 <hr />
-<h2 id="layout-section_4">layout: section<a class="headerlink" href="#layout-section_4" title="Permanent link"></a></h2>
+<h2 id="layout-section_5">layout: section<a class="headerlink" href="#layout-section_5" title="Permanent link"></a></h2>
 <h1 id="deploiement">Déploiement<a class="headerlink" href="#deploiement" title="Permanent link"></a></h1>
 <hr />
 <h1 id="conteneurisation-et-ci-cp8">Conteneurisation et CI <small>(CP8)</small><a class="headerlink" href="#conteneurisation-et-ci-cp8" title="Permanent link"></a></h1>
@@ -1871,7 +1930,7 @@ CP8.
 -->
 
 <hr />
-<h2 id="layout-section_5">layout: section<a class="headerlink" href="#layout-section_5" title="Permanent link"></a></h2>
+<h2 id="layout-section_6">layout: section<a class="headerlink" href="#layout-section_6" title="Permanent link"></a></h2>
 <h1 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link"></a></h1>
 <hr />
 <h1 id="challenges">Challenges<a class="headerlink" href="#challenges" title="Permanent link"></a></h1>
@@ -1896,9 +1955,10 @@ notamment le volet NoSQL.
 
 <hr />
 <ul>
-<li>Dépôt : <a href="https://github.com/ebouchut/learn-dev">github.com/ebouchut/learn-dev</a></li>
+<li><strong>Dépôt</strong> : <a href="https://github.com/ebouchut/learn-dev">github.com/ebouchut/learn-dev</a></li>
 <li><strong>Projet</strong> : <a href="https://github.com/users/ebouchut/projects/7">github.com/users/ebouchut/projects/7</a></li>
 <li><strong>Décisions d&rsquo;architecture</strong>: <a href="https://github.com/ebouchut/learn-dev/blob/dev/docs/adr/README.md#index">ADRs</a></li>
+<li>Palette/Thème: </li>
 </ul>
 <hr />
 <h2 id="layout-end">layout: end<a class="headerlink" href="#layout-end" title="Permanent link"></a></h2>
