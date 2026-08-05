@@ -1326,9 +1326,9 @@ Me présenter.
 <h2 id="etudiant">Etudiant<a class="headerlink" href="#etudiant" title="Permanent link"></a></h2>
 <p>Rôle <strong><code>STUDENT</code></strong></p>
 <ul>
-<li>création de son compte:<ul>
-<li>rôle <strong>par défaut</strong></li>
-<li><strong>aucune restriction</strong></li>
+<li>création de son compte :<ul>
+<li>rôle <strong>par défaut</strong>,</li>
+<li><strong>aucune restriction</strong>,</li>
 </ul>
 </li>
 <li>consultation du <strong>catalogue</strong> des cours, </li>
@@ -1346,7 +1346,7 @@ Pourquoi aucune restriction à l'enregistrement d'un étudiant?
 <h2 id="formateur">Formateur<a class="headerlink" href="#formateur" title="Permanent link"></a></h2>
 <p>Rôle <strong><code>INSTRUCTOR</code></strong> :</p>
 <ul>
-<li><strong>création de contenu</strong> (cours/leçons), </li>
+<li><strong>création de contenu</strong> (cours et leçons), </li>
 <li>cycle de vie de <strong>publication</strong> des cours et leçons, </li>
 <li>gestion des <strong>inscriptions</strong>.</li>
 </ul>
@@ -1367,15 +1367,6 @@ Pourquoi aucune restriction à l'enregistrement d'un étudiant?
 <li>Maquettage et UX</li>
 <li>Environnement de travail</li>
 </ul>
-<!--
-
-- **organisation du travail** (aujourd'hui en solo, donc pas encore de SCRUM)
-- le cahier des charges
-- la modélisation des données et la base qui les stockent
-- le maquettage et l'expérience utilisateur (UX)
-- l'environnement de travail
--->
-
 <hr />
 <h1 id="gestion-de-projet">Gestion de projet<a class="headerlink" href="#gestion-de-projet" title="Permanent link"></a></h1>
 <ul>
@@ -1468,13 +1459,13 @@ merge fix/htaccess
 <li>administrer.
 </li>
 </ul>
-<h2 id="objectifs-non-fonctionnel">Objectifs non fonctionnel<a class="headerlink" href="#objectifs-non-fonctionnel" title="Permanent link"></a></h2>
+<h2 id="objectifs-non-fonctionnels">Objectifs non fonctionnels<a class="headerlink" href="#objectifs-non-fonctionnels" title="Permanent link"></a></h2>
 <ul>
-<li>sécurité, </li>
-<li>accessibilité (<em>RGAA</em>),</li>
-<li>responsive, </li>
-<li>tests, </li>
-<li>Intégration Continue (CI).</li>
+<li><strong>sécurité</strong>, </li>
+<li><strong>accessibilité</strong> (<em>RGAA</em>),</li>
+<li>interface <strong>responsive</strong>, </li>
+<li><strong>tests</strong>, </li>
+<li>Intégration Continue (<strong>CI</strong>).</li>
 </ul>
 <hr />
 <h1 id="personas">Personas<a class="headerlink" href="#personas" title="Permanent link"></a></h1>
@@ -1503,6 +1494,9 @@ Relier aux besoins non fonctionnels.
 <hr />
 <h2 id="layout-section_2">layout: section<a class="headerlink" href="#layout-section_2" title="Permanent link"></a></h2>
 <h1 id="base-de-donnees-cp5">Base de données  <small>(CP5)</small><a class="headerlink" href="#base-de-donnees-cp5" title="Permanent link"></a></h1>
+<p><br />
+</p>
+<h2 id="modelisation-des-donnees-diagrammes-merise">Modélisation des données (diagrammes Merise)<a class="headerlink" href="#modelisation-des-donnees-diagrammes-merise" title="Permanent link"></a></h2>
 <hr />
 <h2 id="layout-two-cols">layout: two-cols<a class="headerlink" href="#layout-two-cols" title="Permanent link"></a></h2>
 <p>::left::
@@ -1521,7 +1515,7 @@ Relier aux besoins non fonctionnels.
 
 ::right::
 
-  <img src="/images/mcd.png" class="max-h-[85%] max-w-[85%]" alt="MCD" />
+<img src="/images/mcd.png" class="max-h-[85%] max-w-[85%]" alt="MCD" />
 
 
 
@@ -1560,29 +1554,29 @@ Relier aux besoins non fonctionnels.
 (~1,5 min)
 
 9 entités : utilisateurs, rôles, cours, leçons, inscriptions, jetons, audit. 
-- Relationnel mais pas spécifique à une base de données.
-- PAS encore les **types** de colonnes, contraintes... 
+- Un peu de **Relationnel mais pas trop** :
+    - **PAS spécifique à une base** de données.
+    - PAS encore les **types** de colonnes, les contraintes... 
 --></p>
 <hr />
 <h1 id="base-de-donnees-mpd">Base de données — MPD<a class="headerlink" href="#base-de-donnees-mpd" title="Permanent link"></a></h1>
 <p>Modèle Physique de Données
 
-- Syntaxe spécifique au moteur de base de données relationelle (<em>SGBDR</em>)
-- <strong>PostgreSQL</strong> (ADR-06),
-- <strong>Clés primaires</strong>  (choix d&rsquo;architecture ADR-03) 
-    - <strong><code>UUID</code></strong> pour la table <strong><code>users</code></strong>
-        - anti-<a href="https://en.wikipedia.org/wiki/Insecure_direct_object_reference">IDOR</a>
-        - dans les 10 principales vulnérabilités <strong>OWASP</strong> 
-    - <strong><code>BIGINT</code></strong> pour les autres tables
+- <strong>Syntaxe spécifique au moteur</strong> de base de données relationelle choisi (<em>SGBDR</em>)
+- <strong>PostgreSQL</strong> (ADR-07),
+    - <strong>Clés primaires</strong>  (ADR-03) :
+        - <strong><code>UUID</code></strong> pour la table <strong><code>users</code></strong>
+            - anti-<a href="https://en.wikipedia.org/wiki/Insecure_direct_object_reference">IDOR</a>
+              (top-10 des vulnérabilités <strong>OWASP</strong>)
+        - <strong><code>BIGINT</code></strong> pour les autres tables
     - <strong>Clé primaire composite</strong> pour les 2 tables de jonction 
-
-
+- Diagramme MPD à suivre (ou équivalent <a href="https://github.com/ebouchut/learn-dev/blob/dev/docs/database/merise/mpd/README.md">Markdown</a> plus digérable ;-)
 
 <!--
-(~1,5 min) 
+(~3 min) 
 
-- Pourquoi PostgreSQL ? (<a href="https://github.com/ebouchut/learn-dev/blob/dev/docs/adr/0007-use-postgresql-over-mysql.md">ADR-0007</a>), 
-- Migrations BDD:
+- **Pourquoi PostgreSQL ?** (<a href="https://github.com/ebouchut/learn-dev/blob/dev/docs/adr/0007-use-postgresql-over-mysql.md">ADR-0007</a>), 
+- **Migrations BDD**:
     - *Liquibase* (<a href="https://github.com/ebouchut/learn-dev/blob/dev/docs/adr/0005-handwrite-liquibase-migrations-over-mcd-ddl.md">ADR-0005</a>), 
 - <code>UUID</code> vs <code>BIGINT</code> (<a href="https://github.com/ebouchut/learn-dev/blob/dev/docs/adr/0003-uuid-pk-for-users-bigint-elsewhere.md">ADR-0003</a>)
     - anti-IDOR
@@ -1596,41 +1590,99 @@ Relier aux besoins non fonctionnels.
 <h1 id="diagramme-mpd">Diagramme MPD<a class="headerlink" href="#diagramme-mpd" title="Permanent link"></a></h1>
 <p><img src="/images/mpd.svg" class="max-h-[100%] max-w-[100%]" alt="MPD" /></p>
 <hr />
+<h2 id="layout-section_3">layout: section<a class="headerlink" href="#layout-section_3" title="Permanent link"></a></h2>
 <h1 id="maquettage-et-accessibilite-cp2">Maquettage et accessibilité <small>(CP2)</small><a class="headerlink" href="#maquettage-et-accessibilite-cp2" title="Permanent link"></a></h1>
-<p><div class="grid grid-cols-[1fr_auto] gap-6 items-center">
+<h2 id="wireframes-mockups-prototype">Wireframes, Mockups, Prototype<a class="headerlink" href="#wireframes-mockups-prototype" title="Permanent link"></a></h2>
+<h2 id="charte-graphique">Charte graphique<a class="headerlink" href="#charte-graphique" title="Permanent link"></a></h2>
+<h2 id="accessibilite">Accessibilité<a class="headerlink" href="#accessibilite" title="Permanent link"></a></h2>
+<hr />
+<h2 id="layout-two-cols-header">layout: two-cols-header<a class="headerlink" href="#layout-two-cols-header" title="Permanent link"></a></h2>
+<h1 id="wireframes">Wireframes<a class="headerlink" href="#wireframes" title="Permanent link"></a></h1>
+<p><a href="https://www.figma.com/design/2q1Rt5NGbQ1w8gRtRGoF4A/learn-dev?node-id=10-10&amp;t=swDEj2PPEdZHxQsn-1">Figma</a>
 
-<div>
+::left::
+</p>
+<h2 id="mobile">Mobile<a class="headerlink" href="#mobile" title="Permanent link"></a></h2>
+<p><img src="/images/wireframes/wireframe-home-mobile.svg" class="h-90 rounded shadow" />
 
-- <strong>Maquette</strong> 
-    - Wireframes
-    - Mockups 
-    - Prototype
-- Charte :
-    - Thème <code>Catppuccin</code>
-- <strong>Responsive</strong> : versions <strong>mobile</strong> et <strong>desktop</strong> :
-    - Media Queries
-    - points de rupture en <code>rem</code>.
-- <strong>Accessibilité RGAA / WCAG AA</strong> : 
-    - tags sémantiques (structure, SEO, lecteur écran), 
-    - RGAA:
-        - <em>skip link</em>,
-    - contrastes calculés (min. 4,73:1), 
-    - Police <strong>Atkinson Hyperlegible</strong>.
+::right::
+</p>
+<h2 id="desktop">Desktop<a class="headerlink" href="#desktop" title="Permanent link"></a></h2>
+<p><img src="/images/wireframes/wireframe-home-desktop.svg" class="rounded shadow" /></p>
+<hr />
+<h2 id="layout-two-cols-header_1">layout: two-cols-header<a class="headerlink" href="#layout-two-cols-header_1" title="Permanent link"></a></h2>
+<h1 id="mockups">Mockups<a class="headerlink" href="#mockups" title="Permanent link"></a></h1>
+<p><a href="https://www.figma.com/proto/2q1Rt5NGbQ1w8gRtRGoF4A/learn-dev?node-id=0-1&amp;t=swDEj2PPEdZHxQsn-1">Figma</a>
 
-</div>
+::left::
+</p>
+<h2 id="mobile_1">Mobile<a class="headerlink" href="#mobile_1" title="Permanent link"></a></h2>
+<p><img src="/images/mockups/mockup-home-mobile.svg" class="h-90 rounded shadow" />
 
-<img src="/images/mockups/mockup-mobile.png" class="h-90 rounded shadow" />
+::right::
+</p>
+<h2 id="desktop_1">Desktop<a class="headerlink" href="#desktop_1" title="Permanent link"></a></h2>
+<p><img src="/images/mockups/mockup-home-desktop.svg" class="rounded shadow" /></p>
+<hr />
+<h1 id="prototype">Prototype<a class="headerlink" href="#prototype" title="Permanent link"></a></h1>
+<p>Maquettes interactives Navigation d&rsquo;un :
 
-</div>
+- <strong>étudiant</strong> :
+    - <a href="https://www.figma.com/proto/2q1Rt5NGbQ1w8gRtRGoF4A/learn-dev?node-id=0-1&amp;p=f&amp;viewport=214%2C-1073%2C1.07&amp;t=swDEj2PPEdZHxQsn-0&amp;scaling=scale-down&amp;content-scaling=fixed&amp;starting-point-node-id=3%3A2&amp;show-proto-sidebar=1">desktop</a>
+    - <a href="https://www.figma.com/proto/2q1Rt5NGbQ1w8gRtRGoF4A/learn-dev?node-id=0-1&amp;p=f&amp;viewport=214%2C-1073%2C1.07&amp;t=swDEj2PPEdZHxQsn-0&amp;scaling=scale-down&amp;content-scaling=fixed&amp;starting-point-node-id=208%3A2&amp;show-proto-sidebar=1">mobile</a>
+- <strong>enseignant</strong> :
+    - <a href="https://www.figma.com/proto/2q1Rt5NGbQ1w8gRtRGoF4A/learn-dev?node-id=0-1&amp;p=f&amp;viewport=214%2C-1073%2C1.07&amp;t=swDEj2PPEdZHxQsn-0&amp;scaling=scale-down&amp;content-scaling=fixed&amp;starting-point-node-id=351%3A52&amp;show-proto-sidebar=1">mobile</a>
+    - <a href="https://www.figma.com/proto/2q1Rt5NGbQ1w8gRtRGoF4A/learn-dev?node-id=0-1&amp;p=f&amp;viewport=214%2C-1073%2C1.07&amp;t=swDEj2PPEdZHxQsn-0&amp;scaling=scale-down&amp;content-scaling=fixed&amp;starting-point-node-id=254%3A14&amp;show-proto-sidebar=1">desktop</a>
+- <strong>administrateur</strong> :
+    - <a href="https://www.figma.com/proto/2q1Rt5NGbQ1w8gRtRGoF4A/learn-dev?node-id=0-1&amp;p=f&amp;viewport=214%2C-1073%2C1.07&amp;t=swDEj2PPEdZHxQsn-0&amp;scaling=scale-down&amp;content-scaling=fixed&amp;starting-point-node-id=354%3A90&amp;show-proto-sidebar=1">mobile</a>
+    - <a href="https://www.figma.com/proto/2q1Rt5NGbQ1w8gRtRGoF4A/learn-dev?node-id=0-1&amp;p=f&amp;viewport=214%2C-1073%2C1.07&amp;t=swDEj2PPEdZHxQsn-0&amp;scaling=scale-down&amp;content-scaling=fixed&amp;starting-point-node-id=257%3A136&amp;show-proto-sidebar=1">desktop</a>
 
 <!--
-(~2 min) 
+Prototype Maquette visuelle **interactive** montre comment :
+- l’interface se comportera,
+- comment l’utilisateur naviguera d’un écran à l’autre.
 
-Montrer la version mobile. 
-- Accessibilité prise en compte dès le début
-Contrastes mesurés. 
-
+Dans un prototype :
+- les liens fonctionnent
+- quand on clique sur un bouton l’écran suivant apparaît
+- les transitions et animations sont simulées.
 --></p>
+<hr />
+<h1 id="charte-graphique_1">Charte graphique<a class="headerlink" href="#charte-graphique_1" title="Permanent link"></a></h1>
+<ul>
+<li>Thème <code>Catppuccin</code></li>
+<li>Polices lisibles : </li>
+<li><code>Atkinson Hyperlegible</code> (corps de texte), </li>
+<li><code>Sora</code> (titres) sans-serif</li>
+<li><code>JetBrains Mono</code> (code)
+</li>
+<li><strong>Responsive</strong> : <ul>
+<li>versions <strong>mobile</strong> et <strong>desktop</strong></li>
+<li>Media Queries avec points de rupture en <code>rem</code>.</li>
+</ul>
+</li>
+<li><strong>Accessibilité (RGAA / WCAG <code>AA</code>)</strong> : <ul>
+<li>tags sémantiques (structure, SEO, lecteur écran), </li>
+<li>RGAA :<ul>
+<li><em>skip link</em>,</li>
+</ul>
+</li>
+<li><strong>contrastes</strong> calculés (min. 4,73:1), 
+
+
+&lt;!&ndash;
+(~2 min) 
+</li>
+</ul>
+</li>
+<li>Mobile first
+</li>
+<li><strong>Accessibilité</strong> prise en compte dès la conception</li>
+<li><strong>Contrastes</strong> mesurés (<code>AA</code>). </li>
+<li>Polices de caractères <strong>Google</strong> téléchargées <strong>en local</strong> pour éviter les problèmes <strong>GDPR</strong> (pixel envoyés à Google):</li>
+<li><code>Sora</code>: geometric sans-serif on Google Fonts
+&ndash;&gt;</li>
+</ul>
 <hr />
 <h1 id="environnement-technique-cp1">Environnement technique <small>(CP1)</small><a class="headerlink" href="#environnement-technique-cp1" title="Permanent link"></a></h1>
 <ul>
@@ -1670,7 +1722,7 @@ Balayer la stack:</li>
 <h1 id="differences-entre-sql-et-nosql">Différences entre SQL et NoSQL<a class="headerlink" href="#differences-entre-sql-et-nosql" title="Permanent link"></a></h1>
 <p>TODO</p>
 <hr />
-<h2 id="layout-section_3">layout: section<a class="headerlink" href="#layout-section_3" title="Permanent link"></a></h2>
+<h2 id="layout-section_4">layout: section<a class="headerlink" href="#layout-section_4" title="Permanent link"></a></h2>
 <h1 id="developpement">Développement<a class="headerlink" href="#developpement" title="Permanent link"></a></h1>
 <hr />
 <h1 id="architecture-en-couches">Architecture en couches<a class="headerlink" href="#architecture-en-couches" title="Permanent link"></a></h1>
@@ -1706,7 +1758,7 @@ flowchart LR
     thymeleaf   --&gt;|Renseigne la vue| thymeleaf
     thymeleaf   -.-&gt; |"HTML (vue remplie)"| browser</code></p>
 <hr />
-<h2 id="layout-section_4">layout: section<a class="headerlink" href="#layout-section_4" title="Permanent link"></a></h2>
+<h2 id="layout-section_5">layout: section<a class="headerlink" href="#layout-section_5" title="Permanent link"></a></h2>
 <h1 id="demo">Démo<a class="headerlink" href="#demo" title="Permanent link"></a></h1>
 <!--
 - application Web **responsive** et **accessible**, 
@@ -1714,9 +1766,12 @@ flowchart LR
     - codée:
       - coté **serveur**: en **Java** et **Spring Boot**
       - coté **client**: en **HTML, CSS, JS**.
-
 -->
 
+<hr />
+<p>layout: iframe
+url: <a href="http://localhost:8080/">http://localhost:8080/</a></p>
+<hr />
 <hr />
 <h1 id="deux-fonctionnalites-crud">Deux fonctionnalités CRUD<a class="headerlink" href="#deux-fonctionnalites-crud" title="Permanent link"></a></h1>
 <ul>
@@ -1730,20 +1785,29 @@ flowchart LR
 <li>autorisations.</li>
 </ul>
 </li>
-<li><strong>Erreurs HTTP</strong> explicites :<ul>
-<li><code>403</code>: Pas authentifié ou authorisation insuffisante</li>
-<li><code>404</code>: On ne le présente plus</li>
-<li><code>409</code>: conflit dans les paramètres de la requête</li>
+<li>
+<p><strong>Erreurs HTTP</strong> explicites :</p>
+<ul>
+<li><strong>Pas</strong> de <code>401</code> : Authentification échouée</li>
+<li><code>403</code> : Authorisation insuffisante</li>
+<li><code>404</code> : On ne le présente plus</li>
+<li><code>409</code> : conflit dans les paramètres de la requête</li>
+<li><code>500</code> : erreur du serveur
+&lt;!&ndash;
+(~1 min)</li>
+</ul>
+</li>
+<li>
+<p>Voici ls <strong>2 features</strong> que je vais détailler ensuite.</p>
+</li>
+<li>Si authentification échoue  <em>Spring Security</em> (<code>FormLogin</code>) :<ul>
+<li>ne renvoie PAS <code>401</code> </li>
+<li>ne donne PAS la cause (login indexistant ou mot de passe incorrect) </li>
+<li>redirige (<code>302</code>) sur la page de login
+&ndash;&gt;</li>
 </ul>
 </li>
 </ul>
-<!--
-(~1 min)
-
-- Voici **2 features** que je vais détailler par la suite.
-- **Erreur `403`**: Si le login échoue ne **jamais** préciser **la cause** (login n'existe pas ou mot de passe est incorrect) mais renvoyer `403`.
--->
-
 <hr />
 <h1 id="feature-1-inscription-dun-utilisateurcp4-cp7">Feature 1 — Inscription d&rsquo;un utilisateur<small>(CP4, CP7)</small><a class="headerlink" href="#feature-1-inscription-dun-utilisateurcp4-cp7" title="Permanent link"></a></h1>
 <div class="grid grid-cols-2 gap-4 items-center">
@@ -1827,7 +1891,7 @@ CP4 (dynamique) + CP7 (composant métier).
 -->
 
 <hr />
-<h2 id="layout-two-cols-header">layout: two-cols-header<a class="headerlink" href="#layout-two-cols-header" title="Permanent link"></a></h2>
+<h2 id="layout-two-cols-header_2">layout: two-cols-header<a class="headerlink" href="#layout-two-cols-header_2" title="Permanent link"></a></h2>
 <h1 id="feature-2-cours-et-lecons-cp7">Feature 2 — Cours et leçons <small>(CP7)</small><a class="headerlink" href="#feature-2-cours-et-lecons-cp7" title="Permanent link"></a></h1>
 <p>::left::</p>
 <h2 id="espace-formateur">Espace formateur<a class="headerlink" href="#espace-formateur" title="Permanent link"></a></h2>
@@ -1976,7 +2040,7 @@ La CI verrouille la qualité à chaque push.
 -->
 
 <hr />
-<h2 id="layout-section_5">layout: section<a class="headerlink" href="#layout-section_5" title="Permanent link"></a></h2>
+<h2 id="layout-section_6">layout: section<a class="headerlink" href="#layout-section_6" title="Permanent link"></a></h2>
 <h1 id="deploiement">Déploiement<a class="headerlink" href="#deploiement" title="Permanent link"></a></h1>
 <hr />
 <h1 id="conteneurisation-et-ci-cp8">Conteneurisation et CI <small>(CP8)</small><a class="headerlink" href="#conteneurisation-et-ci-cp8" title="Permanent link"></a></h1>
@@ -2010,7 +2074,7 @@ CP8.
 -->
 
 <hr />
-<h2 id="layout-section_6">layout: section<a class="headerlink" href="#layout-section_6" title="Permanent link"></a></h2>
+<h2 id="layout-section_7">layout: section<a class="headerlink" href="#layout-section_7" title="Permanent link"></a></h2>
 <h1 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link"></a></h1>
 <hr />
 <h1 id="challenges">Challenges<a class="headerlink" href="#challenges" title="Permanent link"></a></h1>

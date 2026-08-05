@@ -412,8 +412,8 @@ layout: section
 
 # Maquettage et accessibilité <small>(CP2)</small>
 
-## Wireframes, Mockups, Prototype
-## Charte graphique
+## Maquettage: `Wireframes`, `Mockups`, `Prototype`
+## Typographie et palette
 ## Accessibilité
 
 ---
@@ -421,6 +421,8 @@ layout: two-cols-header
 ---
 
 # Wireframes
+
+[Figma](https://www.figma.com/design/2q1Rt5NGbQ1w8gRtRGoF4A/learn-dev?node-id=10-10&t=swDEj2PPEdZHxQsn-1)
 
 ::left::
 
@@ -434,36 +436,155 @@ layout: two-cols-header
 
 <img src="/images/wireframes/wireframe-home-desktop.svg" class="rounded shadow" />
 
+<!--
+Un `Wireframe` (**maquette conceptuelle**) est un **squelette statique**:
+- **SANS style** (CSS),
+- donne grossièrement la **structure** et la **disposition** des **élements principaux** de l'interface, 
+- PAS de couleur: **noir et gris**.
+-->
+
+---
+layout: two-cols-header
+---
+
+# Mockups
+
+Maquette **visuelle statique** de l'application.
+
+[Figma](https://www.figma.com/proto/2q1Rt5NGbQ1w8gRtRGoF4A/learn-dev?node-id=0-1&t=swDEj2PPEdZHxQsn-1)
+
+::left::
+
+## Desktop
+
+<img src="/images/mockups/mockup-home-desktop.svg" class="rounded shadow" />
+
+::right::
+
+## Mobile
+
+<img src="/images/mockups/mockup-home-mobile.svg" class="h-90 rounded shadow" />
+
+
+<!--
+Un `mockup` est une maquette **visuelle** fidèle avec :
+- **couleurs**, 
+- **typographie**, 
+- **images**.
+
+Mais elle est **figée**.
+-->
 
 ---
 
-# Charte graphique
+# Prototype
 
-- Thème `Catppuccin`
-- Polices lisibles : 
-  - `Atkinson Hyperlegible` (corps de texte), 
-  - `Sora` (titres) sans-serif
-  - `JetBrains Mono` (code)
+Maquette visuelle **interactive** de l'application.
 
-- **Responsive** : 
-    - versions **mobile** et **desktop**
-    - Media Queries avec points de rupture en `rem`.
-- **Accessibilité (RGAA / WCAG `AA`)** : 
-    - tags sémantiques (structure, SEO, lecteur écran), 
-    - RGAA :
-        - *skip link*,
-    - **contrastes** calculés (min. 4,73:1), 
+
+<img src="/images/prototype/prototype-arrows.png" alt="Prototype with arrows" />
+
+<!--
+Prototype: Maquette visuelle **interactive** simule comment :
+- l’interface se comportera,
+- comment l’utilisateur **naviguera d’un écran à l’autre**.
+
+Dans un prototype :
+- les **liens** et les **boutons fonctionnent**
+- quand on *clique** dessus **l’écran suivant apparaît**
+- les transitions et animations sont simulées.
+-->
+
+---
+
+# Prototype - Parcours
+
+
+- **étudiant** : 
+[mobile](https://www.figma.com/proto/2q1Rt5NGbQ1w8gRtRGoF4A/learn-dev?node-id=0-1&p=f&viewport=214%2C-1073%2C1.07&t=swDEj2PPEdZHxQsn-0&scaling=scale-down&content-scaling=fixed&starting-point-node-id=208%3A2&show-proto-sidebar=1)
+/ [desktop](https://www.figma.com/proto/2q1Rt5NGbQ1w8gRtRGoF4A/learn-dev?node-id=0-1&p=f&viewport=214%2C-1073%2C1.07&t=swDEj2PPEdZHxQsn-0&scaling=scale-down&content-scaling=fixed&starting-point-node-id=3%3A2&show-proto-sidebar=1) 
+- **enseignant** :
+  [mobile](https://www.figma.com/proto/2q1Rt5NGbQ1w8gRtRGoF4A/learn-dev?node-id=0-1&p=f&viewport=214%2C-1073%2C1.07&t=swDEj2PPEdZHxQsn-0&scaling=scale-down&content-scaling=fixed&starting-point-node-id=351%3A52&show-proto-sidebar=1)
+ / [desktop](https://www.figma.com/proto/2q1Rt5NGbQ1w8gRtRGoF4A/learn-dev?node-id=0-1&p=f&viewport=214%2C-1073%2C1.07&t=swDEj2PPEdZHxQsn-0&scaling=scale-down&content-scaling=fixed&starting-point-node-id=254%3A14&show-proto-sidebar=1)
+- **administrateur** :
+  [mobile](https://www.figma.com/proto/2q1Rt5NGbQ1w8gRtRGoF4A/learn-dev?node-id=0-1&p=f&viewport=214%2C-1073%2C1.07&t=swDEj2PPEdZHxQsn-0&scaling=scale-down&content-scaling=fixed&starting-point-node-id=354%3A90&show-proto-sidebar=1)
+  / [desktop](https://www.figma.com/proto/2q1Rt5NGbQ1w8gRtRGoF4A/learn-dev?node-id=0-1&p=f&viewport=214%2C-1073%2C1.07&t=swDEj2PPEdZHxQsn-0&scaling=scale-down&content-scaling=fixed&starting-point-node-id=257%3A136&show-proto-sidebar=1)
+
+---
+
+# Typographie et palette
+
+- **Polices** choisies **très lisibles** : 
+  - `Sora` : pour les **titres** (sans-serif)
+  - `Atkinson Hyperlegible` : corps de **texte** (sans-serif),
+  - `JetBrains Mono` : exemples de **code** (monospace).
+- **Palette** de couleurs : `Catppuccin`
+    - **confort de lecture** 
+    - pendant de **longues heures** 
+    - **mode clair** et **sombre**
+
+<!--
+- Un peu **ambitieux de parler de `charte graphique`** pour l'instant.
+- **Polices** de caractères :  
+    - **téléchargées** en local 
+    - PAS depuis Google
+    - évite problème **GDPR** : 
+        - envoi d'un pixel et de l'**IP chez Google**
+-->
+
+---
+layout: image
+image: /images/palette.png
+---
+
+
+
+
+<!--
+- **Contrastes** des couleurs mesurés (`RGAA` / `WCAG  **`AA`**). 
+
+- `WCAG`: Web Content Accessibility Guidelines (🇺🇸)
+- `RGAA`: Recommandations Générales d'Amélioration de l'Accessibilité (🇫🇷)
+-->
+
+---
+
+# Responsive Design
+
+- **Mobile first**
+- versions **mobile** et **desktop**
+- Media Queries avec points de rupture en `rem`.
+- Gestion de la transition entre mode clair et sombre
+
+<!--
+  dark / light theme (mode clair sombre):
+  [`prefers-color-scheme`](https://github.com/ebouchut/learn-dev/blob/bfb883291b677621637f48a2b6215e1f571e7094/src/main/resources/static/css/theme-catppuccin.css#L42-L66)
+-->
+
+---
+
+# Accessibilité 
+
+- **tags sémantiques** :
+    - structure, 
+        - SEO, 
+        - lecteur d'écran. 
+- RGAA :
+    - *skip link*, 
+    - attributs sémantiqus: 
+        - `aria-label`, 
+        - `aria-invalid`
+        - `aria-current`
+        - une mine d'or truffée de conseils pragmatiques et utiles !
+    - **contrastes** 
+        - calculés (min. 4,73:1), 
+        - catégorisés WCAG `AA`
 
 
 <!--
 (~2 min) 
 
-- Mobile first
-
 - **Accessibilité** prise en compte dès la conception
-- **Contrastes** mesurés (`AA`). 
-- Polices de caractères **Google** téléchargées **en local** pour éviter les problèmes **GDPR** (pixel envoyés à Google):
-- `Sora`: geometric sans-serif on Google Fonts
 -->
 
 ---
@@ -802,7 +923,11 @@ Relier à OWASP. C'est un point fort : sécurité dès la conception.
 
 # Tests
 
-- **64 tests** (pyramide) : unitaires (Mockito), tranche JPA, intégration (MockMvc).
+- Pyramide des tests
+    - unitaires (Mockito), 
+    - tranche JPA, 
+    - intégration (MockMvc),
+    - Smoke test.
 - **PostgreSQL réel** en test via **Testcontainers** (schéma fidèle : UUID, contraintes).
 - **Couverture** du code par les tests :
     -  mesurée par **JaCoCo**, 
@@ -890,7 +1015,6 @@ notamment le volet NoSQL.
 - **Dépôt** : [github.com/ebouchut/learn-dev](https://github.com/ebouchut/learn-dev)
 - **Projet** : [github.com/users/ebouchut/projects/7](https://github.com/users/ebouchut/projects/7)
 - **Décisions d'architecture**: [ADRs](https://github.com/ebouchut/learn-dev/blob/dev/docs/adr/README.md#index)
-- Palette/Thème: 
 
 
 ---
