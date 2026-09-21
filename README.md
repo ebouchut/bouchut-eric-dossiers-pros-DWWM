@@ -38,7 +38,7 @@ timeline
                 : Questions sur le dossier et la présentation
                 : Vérification de la maîtrise des compétences<br>avec questions complémentaires ou Dossier Professionnel si besoin
         Entretien final<br>(15 min)
-                : Échange sur le 
+                : Échange sur le dossier professionnel
                 : Perspectives professionnelles
 ```
 
