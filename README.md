@@ -61,5 +61,5 @@ Il aborde aussi comment lancer les tests et générer la documentation.
 ## Contact
 
 - [Profil LinkedIn](https://linkedin.com/in/ebouchut)
-- [Blog](https://EricBouchut.com/blog/contact)
+- [Blog](https://www.ericbouchut.com/)
 - [CV](bouchut-eric-cv.pdf)
